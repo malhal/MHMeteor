@@ -5,6 +5,7 @@ CoreMeteor combines the Meteor javascript client with the best of Core Data to c
 
 ##Demo Video
 I've uploaded a video to demonstrate the capabilities. You'll see a simulator on the left, a web page in the middle and an iPhone on the right, it's connected via Quicktime's iPhone capture using the lightning cable. You will see records being added, modified and being deleted, and also what happens when the iPhone goes in airplane mode and comes back online.
+
 [![CoreMeteor — Demo Video](http://img.youtube.com/vi/hPbU_gfHXu8/0.jpg)](https://www.youtube.com/watch?v=hPbU_gfHXu8) 
 
 ##Demo Application

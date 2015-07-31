@@ -1,0 +1,509 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		ECEC18F01B6851BC0094493D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = ECEC18EF1B6851BC0094493D /* main.m */; };
+		ECEC18F31B6851BC0094493D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = ECEC18F21B6851BC0094493D /* AppDelegate.m */; };
+		ECEC18F61B6851BC0094493D /* CoreMeteorDemo.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = ECEC18F41B6851BC0094493D /* CoreMeteorDemo.xcdatamodeld */; };
+		ECEC18F91B6851BC0094493D /* MasterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ECEC18F81B6851BC0094493D /* MasterViewController.m */; };
+		ECEC18FC1B6851BC0094493D /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ECEC18FB1B6851BC0094493D /* DetailViewController.m */; };
+		ECEC18FF1B6851BC0094493D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ECEC18FD1B6851BC0094493D /* Main.storyboard */; };
+		ECEC19011B6851BC0094493D /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ECEC19001B6851BC0094493D /* Images.xcassets */; };
+		ECEC19041B6851BC0094493D /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = ECEC19021B6851BC0094493D /* LaunchScreen.xib */; };
+		ECEC19101B6851BC0094493D /* CoreMeteorDemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = ECEC190F1B6851BC0094493D /* CoreMeteorDemoTests.m */; };
+		ECEC19261B6851D00094493D /* MHMeteor.m in Sources */ = {isa = PBXBuildFile; fileRef = ECEC191B1B6851D00094493D /* MHMeteor.m */; };
+		ECEC19271B6851D00094493D /* MHMeteorIncrementalStore.m in Sources */ = {isa = PBXBuildFile; fileRef = ECEC191D1B6851D00094493D /* MHMeteorIncrementalStore.m */; };
+		ECEC19281B6851D00094493D /* MHMeteorJSManagedValue.m in Sources */ = {isa = PBXBuildFile; fileRef = ECEC191F1B6851D00094493D /* MHMeteorJSManagedValue.m */; };
+		ECEC19291B6851D00094493D /* MHMongoCollection.m in Sources */ = {isa = PBXBuildFile; fileRef = ECEC19211B6851D00094493D /* MHMongoCollection.m */; };
+		ECEC192A1B6851D00094493D /* MHMongoCursor.m in Sources */ = {isa = PBXBuildFile; fileRef = ECEC19231B6851D00094493D /* MHMongoCursor.m */; };
+		ECEC192B1B6851D00094493D /* MHMongoLiveQueryHandle.m in Sources */ = {isa = PBXBuildFile; fileRef = ECEC19251B6851D00094493D /* MHMongoLiveQueryHandle.m */; };
+		ECF7AF971B6AEC0900FD2BE9 /* MongoDBPredicateAdaptor.m in Sources */ = {isa = PBXBuildFile; fileRef = ECF7AF961B6AEC0900FD2BE9 /* MongoDBPredicateAdaptor.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		ECEC190A1B6851BC0094493D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = ECEC18E21B6851BB0094493D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = ECEC18E91B6851BC0094493D;
+			remoteInfo = CoreMeteorDemo;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		ECEC18EA1B6851BC0094493D /* CoreMeteorDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CoreMeteorDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		ECEC18EE1B6851BC0094493D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		ECEC18EF1B6851BC0094493D /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		ECEC18F11B6851BC0094493D /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		ECEC18F21B6851BC0094493D /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		ECEC18F51B6851BC0094493D /* CoreMeteorDemo.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CoreMeteorDemo.xcdatamodel; sourceTree = "<group>"; };
+		ECEC18F71B6851BC0094493D /* MasterViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MasterViewController.h; sourceTree = "<group>"; };
+		ECEC18F81B6851BC0094493D /* MasterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MasterViewController.m; sourceTree = "<group>"; };
+		ECEC18FA1B6851BC0094493D /* DetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
+		ECEC18FB1B6851BC0094493D /* DetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
+		ECEC18FE1B6851BC0094493D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		ECEC19001B6851BC0094493D /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		ECEC19031B6851BC0094493D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		ECEC19091B6851BC0094493D /* CoreMeteorDemoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CoreMeteorDemoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		ECEC190E1B6851BC0094493D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		ECEC190F1B6851BC0094493D /* CoreMeteorDemoTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CoreMeteorDemoTests.m; sourceTree = "<group>"; };
+		ECEC191A1B6851D00094493D /* MHMeteor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MHMeteor.h; sourceTree = "<group>"; };
+		ECEC191B1B6851D00094493D /* MHMeteor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MHMeteor.m; sourceTree = "<group>"; };
+		ECEC191C1B6851D00094493D /* MHMeteorIncrementalStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MHMeteorIncrementalStore.h; sourceTree = "<group>"; };
+		ECEC191D1B6851D00094493D /* MHMeteorIncrementalStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MHMeteorIncrementalStore.m; sourceTree = "<group>"; };
+		ECEC191E1B6851D00094493D /* MHMeteorJSManagedValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MHMeteorJSManagedValue.h; sourceTree = "<group>"; };
+		ECEC191F1B6851D00094493D /* MHMeteorJSManagedValue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MHMeteorJSManagedValue.m; sourceTree = "<group>"; };
+		ECEC19201B6851D00094493D /* MHMongoCollection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MHMongoCollection.h; sourceTree = "<group>"; };
+		ECEC19211B6851D00094493D /* MHMongoCollection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MHMongoCollection.m; sourceTree = "<group>"; };
+		ECEC19221B6851D00094493D /* MHMongoCursor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MHMongoCursor.h; sourceTree = "<group>"; };
+		ECEC19231B6851D00094493D /* MHMongoCursor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MHMongoCursor.m; sourceTree = "<group>"; };
+		ECEC19241B6851D00094493D /* MHMongoLiveQueryHandle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MHMongoLiveQueryHandle.h; sourceTree = "<group>"; };
+		ECEC19251B6851D00094493D /* MHMongoLiveQueryHandle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MHMongoLiveQueryHandle.m; sourceTree = "<group>"; };
+		ECEC19341B6852230094493D /* CoreMeteor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CoreMeteor.h; sourceTree = "<group>"; };
+		ECF7AF951B6AEC0900FD2BE9 /* MongoDBPredicateAdaptor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MongoDBPredicateAdaptor.h; sourceTree = "<group>"; };
+		ECF7AF961B6AEC0900FD2BE9 /* MongoDBPredicateAdaptor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MongoDBPredicateAdaptor.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		ECEC18E71B6851BC0094493D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		ECEC19061B6851BC0094493D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		ECEC18E11B6851BB0094493D = {
+			isa = PBXGroup;
+			children = (
+				ECEC19191B6851D00094493D /* CoreMeteor */,
+				ECEC18EC1B6851BC0094493D /* CoreMeteorDemo */,
+				ECEC190C1B6851BC0094493D /* CoreMeteorDemoTests */,
+				ECEC18EB1B6851BC0094493D /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		ECEC18EB1B6851BC0094493D /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				ECEC18EA1B6851BC0094493D /* CoreMeteorDemo.app */,
+				ECEC19091B6851BC0094493D /* CoreMeteorDemoTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		ECEC18EC1B6851BC0094493D /* CoreMeteorDemo */ = {
+			isa = PBXGroup;
+			children = (
+				ECEC18F11B6851BC0094493D /* AppDelegate.h */,
+				ECEC18F21B6851BC0094493D /* AppDelegate.m */,
+				ECEC18F71B6851BC0094493D /* MasterViewController.h */,
+				ECEC18F81B6851BC0094493D /* MasterViewController.m */,
+				ECEC18FA1B6851BC0094493D /* DetailViewController.h */,
+				ECEC18FB1B6851BC0094493D /* DetailViewController.m */,
+				ECEC18FD1B6851BC0094493D /* Main.storyboard */,
+				ECEC19001B6851BC0094493D /* Images.xcassets */,
+				ECEC19021B6851BC0094493D /* LaunchScreen.xib */,
+				ECEC18F41B6851BC0094493D /* CoreMeteorDemo.xcdatamodeld */,
+				ECEC18ED1B6851BC0094493D /* Supporting Files */,
+			);
+			path = CoreMeteorDemo;
+			sourceTree = "<group>";
+		};
+		ECEC18ED1B6851BC0094493D /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				ECEC18EE1B6851BC0094493D /* Info.plist */,
+				ECEC18EF1B6851BC0094493D /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		ECEC190C1B6851BC0094493D /* CoreMeteorDemoTests */ = {
+			isa = PBXGroup;
+			children = (
+				ECEC190F1B6851BC0094493D /* CoreMeteorDemoTests.m */,
+				ECEC190D1B6851BC0094493D /* Supporting Files */,
+			);
+			path = CoreMeteorDemoTests;
+			sourceTree = "<group>";
+		};
+		ECEC190D1B6851BC0094493D /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				ECEC190E1B6851BC0094493D /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		ECEC19191B6851D00094493D /* CoreMeteor */ = {
+			isa = PBXGroup;
+			children = (
+				ECEC19341B6852230094493D /* CoreMeteor.h */,
+				ECEC191A1B6851D00094493D /* MHMeteor.h */,
+				ECEC191B1B6851D00094493D /* MHMeteor.m */,
+				ECEC191C1B6851D00094493D /* MHMeteorIncrementalStore.h */,
+				ECEC191D1B6851D00094493D /* MHMeteorIncrementalStore.m */,
+				ECEC191E1B6851D00094493D /* MHMeteorJSManagedValue.h */,
+				ECEC191F1B6851D00094493D /* MHMeteorJSManagedValue.m */,
+				ECEC19201B6851D00094493D /* MHMongoCollection.h */,
+				ECEC19211B6851D00094493D /* MHMongoCollection.m */,
+				ECEC19221B6851D00094493D /* MHMongoCursor.h */,
+				ECEC19231B6851D00094493D /* MHMongoCursor.m */,
+				ECEC19241B6851D00094493D /* MHMongoLiveQueryHandle.h */,
+				ECEC19251B6851D00094493D /* MHMongoLiveQueryHandle.m */,
+				ECF7AF951B6AEC0900FD2BE9 /* MongoDBPredicateAdaptor.h */,
+				ECF7AF961B6AEC0900FD2BE9 /* MongoDBPredicateAdaptor.m */,
+			);
+			name = CoreMeteor;
+			path = ../CoreMeteor;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		ECEC18E91B6851BC0094493D /* CoreMeteorDemo */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = ECEC19131B6851BC0094493D /* Build configuration list for PBXNativeTarget "CoreMeteorDemo" */;
+			buildPhases = (
+				ECEC18E61B6851BC0094493D /* Sources */,
+				ECEC18E71B6851BC0094493D /* Frameworks */,
+				ECEC18E81B6851BC0094493D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = CoreMeteorDemo;
+			productName = CoreMeteorDemo;
+			productReference = ECEC18EA1B6851BC0094493D /* CoreMeteorDemo.app */;
+			productType = "com.apple.product-type.application";
+		};
+		ECEC19081B6851BC0094493D /* CoreMeteorDemoTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = ECEC19161B6851BC0094493D /* Build configuration list for PBXNativeTarget "CoreMeteorDemoTests" */;
+			buildPhases = (
+				ECEC19051B6851BC0094493D /* Sources */,
+				ECEC19061B6851BC0094493D /* Frameworks */,
+				ECEC19071B6851BC0094493D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				ECEC190B1B6851BC0094493D /* PBXTargetDependency */,
+			);
+			name = CoreMeteorDemoTests;
+			productName = CoreMeteorDemoTests;
+			productReference = ECEC19091B6851BC0094493D /* CoreMeteorDemoTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		ECEC18E21B6851BB0094493D /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0640;
+				ORGANIZATIONNAME = "Malcolm Hall";
+				TargetAttributes = {
+					ECEC18E91B6851BC0094493D = {
+						CreatedOnToolsVersion = 6.4;
+					};
+					ECEC19081B6851BC0094493D = {
+						CreatedOnToolsVersion = 6.4;
+						TestTargetID = ECEC18E91B6851BC0094493D;
+					};
+				};
+			};
+			buildConfigurationList = ECEC18E51B6851BB0094493D /* Build configuration list for PBXProject "CoreMeteorDemo" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = ECEC18E11B6851BB0094493D;
+			productRefGroup = ECEC18EB1B6851BC0094493D /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				ECEC18E91B6851BC0094493D /* CoreMeteorDemo */,
+				ECEC19081B6851BC0094493D /* CoreMeteorDemoTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		ECEC18E81B6851BC0094493D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				ECEC18FF1B6851BC0094493D /* Main.storyboard in Resources */,
+				ECEC19041B6851BC0094493D /* LaunchScreen.xib in Resources */,
+				ECEC19011B6851BC0094493D /* Images.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		ECEC19071B6851BC0094493D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		ECEC18E61B6851BC0094493D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				ECEC19261B6851D00094493D /* MHMeteor.m in Sources */,
+				ECEC192A1B6851D00094493D /* MHMongoCursor.m in Sources */,
+				ECF7AF971B6AEC0900FD2BE9 /* MongoDBPredicateAdaptor.m in Sources */,
+				ECEC192B1B6851D00094493D /* MHMongoLiveQueryHandle.m in Sources */,
+				ECEC18FC1B6851BC0094493D /* DetailViewController.m in Sources */,
+				ECEC18F91B6851BC0094493D /* MasterViewController.m in Sources */,
+				ECEC19281B6851D00094493D /* MHMeteorJSManagedValue.m in Sources */,
+				ECEC18F31B6851BC0094493D /* AppDelegate.m in Sources */,
+				ECEC19271B6851D00094493D /* MHMeteorIncrementalStore.m in Sources */,
+				ECEC19291B6851D00094493D /* MHMongoCollection.m in Sources */,
+				ECEC18F61B6851BC0094493D /* CoreMeteorDemo.xcdatamodeld in Sources */,
+				ECEC18F01B6851BC0094493D /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		ECEC19051B6851BC0094493D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				ECEC19101B6851BC0094493D /* CoreMeteorDemoTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		ECEC190B1B6851BC0094493D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = ECEC18E91B6851BC0094493D /* CoreMeteorDemo */;
+			targetProxy = ECEC190A1B6851BC0094493D /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		ECEC18FD1B6851BC0094493D /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				ECEC18FE1B6851BC0094493D /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		ECEC19021B6851BC0094493D /* LaunchScreen.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				ECEC19031B6851BC0094493D /* Base */,
+			);
+			name = LaunchScreen.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		ECEC19111B6851BC0094493D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		ECEC19121B6851BC0094493D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		ECEC19141B6851BC0094493D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = CoreMeteorDemo/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		ECEC19151B6851BC0094493D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = CoreMeteorDemo/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		ECEC19171B6851BC0094493D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = CoreMeteorDemoTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CoreMeteorDemo.app/CoreMeteorDemo";
+			};
+			name = Debug;
+		};
+		ECEC19181B6851BC0094493D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = CoreMeteorDemoTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CoreMeteorDemo.app/CoreMeteorDemo";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		ECEC18E51B6851BB0094493D /* Build configuration list for PBXProject "CoreMeteorDemo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				ECEC19111B6851BC0094493D /* Debug */,
+				ECEC19121B6851BC0094493D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		ECEC19131B6851BC0094493D /* Build configuration list for PBXNativeTarget "CoreMeteorDemo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				ECEC19141B6851BC0094493D /* Debug */,
+				ECEC19151B6851BC0094493D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		ECEC19161B6851BC0094493D /* Build configuration list for PBXNativeTarget "CoreMeteorDemoTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				ECEC19171B6851BC0094493D /* Debug */,
+				ECEC19181B6851BC0094493D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		ECEC18F41B6851BC0094493D /* CoreMeteorDemo.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				ECEC18F51B6851BC0094493D /* CoreMeteorDemo.xcdatamodel */,
+			);
+			currentVersion = ECEC18F51B6851BC0094493D /* CoreMeteorDemo.xcdatamodel */;
+			path = CoreMeteorDemo.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = ECEC18E21B6851BB0094493D /* Project object */;
+}

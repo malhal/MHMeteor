@@ -15,12 +15,14 @@ I've included a demo application which is basically Apple's Master-Detail templa
 All you need to do is startup meteor and create the incremental store, and then everything the same as a normal CoreData application.
 
 ###Starting up Meteor
+This is how to startup CoreMeteor - it will keep trying to connect until it succeeds. If the javascript on the server changes then the block will be called again with the isRestart flag true.
 ```objc
 [MHMeteor startupMeteorWithURL:[NSURL URLWithString:url] startedUpHandler:^(MHMeteor *meteor, BOOL isRestart) {
 }];
 ```
 
 ###Creating the Incremental Store
+Once Meteor has started and you have the instance, then you can create add the MHMeteorIncrementalStore persistent stor as follows:
 ```objc
 NSError* error;
 [_persistentStoreCoordinator addPersistentStoreWithType:[MHMeteorIncrementalStore type] configuration:nil URL:nil options:@{@"meteor" : _meteor} error:&error];

@@ -34,6 +34,20 @@ static int kLoadRequestRetryDelay = 3; // seconds
     NSURLRequest* _request;
 }
 
++ (void)initialize
+{
+    if (self == [MHMeteor class]) {
+  //    experimental cache settings
+        /*
+        int cacheSizeMemory = 4*1024*1024; // 4MB
+        int cacheSizeDisk = 128*1024*1024; // 128MB
+        NSURLCache *urlCache = [[NSURLCache alloc] initWithMemoryCapacity:0 diskCapacity:cacheSizeDisk diskPath:@"nsurlcache5"];
+        [NSURLCache setSharedURLCache:urlCache];
+        [[NSHTTPCookieStorage sharedHTTPCookieStorage] setCookieAcceptPolicy:NSHTTPCookieAcceptPolicyAlways];
+         */
+    }
+}
+
 +(void)startupWithRequest:(NSURLRequest*)request startedUpHandler:(void(^)(MHMeteor*, BOOL))startedUpHandler{
     __block MHMeteor* meteor;
     __block BOOL isRestart;
@@ -89,6 +103,9 @@ static int kLoadRequestRetryDelay = 3; // seconds
     [self _startedUp:^{
         _startedUp();
     }];
+    
+    // required for groundDB to work when starting offline.
+    [[UIApplication sharedApplication].keyWindow addSubview:_webView];
 }
 
 -(void)setValue:(JSValue *)value{
@@ -140,7 +157,6 @@ static int kLoadRequestRetryDelay = 3; // seconds
     collection = [[MHMongoCollection alloc] initWithMeteor:self
                                                      value:[self.value.context[@"Mongo"][@"Collection"]  constructWithArguments:@[name]]];
     _collectionsByName[name] = collection;
-    
     return collection;
 }
 
@@ -155,7 +171,12 @@ static int kLoadRequestRetryDelay = 3; // seconds
 
 -(void)_startedUp:(void(^)())startedUp{
     NSAssert(startedUp, @"startedUp cannot be null");
-    [self invokeMethod:@"startup" withArguments:@[startedUp]];
+    id startupBlock = ^(){
+        dispatch_async(dispatch_get_main_queue(), ^{
+            startedUp();
+        });
+    };
+    [self invokeMethod:@"startup" withArguments:@[startupBlock]];
 }
 
 -(void)disconnect{
@@ -166,10 +187,19 @@ static int kLoadRequestRetryDelay = 3; // seconds
     [self invokeMethod:@"reconnect" withArguments:nil];
 }
 
--(void)subscribeToRecordSet:(NSString*)recordSet completionHandler:(void(^)())completionHandler{
-    NSAssert(recordSet, @"recordSet cannot be null");
-    [self invokeMethod:@"subscribe" withArguments:@[recordSet,completionHandler]];
+-(void)subscribeWithName:(NSString*)subscriptionName readyHandler:(void(^)())readyHandler{
+    NSAssert(subscriptionName, @"subscriptionName cannot be null");
+    id readyBlock = ^() {
+        NSLog(@"ready");
+        // push to next event loop
+        dispatch_async(dispatch_get_main_queue(),^{
+            readyHandler();
+        });
+    };
+    // ready isnt called when offline
+    [self invokeMethod:@"subscribe" withArguments:@[subscriptionName, readyBlock]];
 }
+
 
 -(void)dealloc{
     NSLog(@"dealloc");

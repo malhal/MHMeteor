@@ -8,6 +8,7 @@
 
 // Main entry point into Meteor.
 
+#import <UIKit/UIKit.h>
 #import <JavaScriptCore/JavaScriptCore.h>
 
 extern NSString* const MHMeteorErrorDomain;
@@ -30,6 +31,9 @@ extern NSString* const MHMeteorErrorDomain;
 
 // use for constructing a collection that is not already constructed in the javascript's isClient code, but must be in its isServer code. Usually all lower case.
 - (MHMongoCollection*)collectionNamed:(NSString*)name;
+
+
+-(void)subscribeWithName:(NSString*)subscriptionName readyHandler:(void(^)())readyHandler;
 
 -(void)disconnect;
 

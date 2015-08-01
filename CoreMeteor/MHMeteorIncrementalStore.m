@@ -19,6 +19,7 @@ static NSString* const kMeteorDocumentIDKey = @"_id";
 @property (retain) NSMutableArray* liveQueryHandles;
 @property (retain) MHMongoCursor* cursor;
 @end
+
 @implementation MHMeteorIncrementalStore{
     MHMeteor* _meteor;
 }
@@ -65,7 +66,7 @@ static NSString* const kMeteorDocumentIDKey = @"_id";
                 }
             }
         }
-        NSDictionary* options = [NSDictionary dictionary];
+        NSMutableDictionary* options = [NSMutableDictionary dictionary];
         
         if(fetchRequest.sortDescriptors.count){
             //todo: make real
@@ -73,14 +74,17 @@ static NSString* const kMeteorDocumentIDKey = @"_id";
             for(NSSortDescriptor* s in fetchRequest.sortDescriptors){
                 [fixed addObject:@[s.key , s.ascending ? @"asc" : @"desc"]];
             }
-            options = @{@"sort":fixed};
+            options[@"sort"] = fixed;
+        }
+        if(fetchRequest.fetchOffset > 0){
+            options[MHMongoCollectionSkipOption] = @(fetchRequest.fetchOffset);
         }
         
         self.cursor = [collection findWithMongoSelector:mongoSelector options:options];
         
         //observe changes before fetching so we don't miss any.
         MHMongoLiveQueryHandle* changedHandle = [_cursor observeChangesDocumentIDChanged:^(NSString *documentID, NSDictionary *fields) {
-            NSLog(@"changed %@ %@", documentID, fields);
+            NSLog(@"observeChangesDocumentIDChanged %@ %@", documentID, fields);
             //NSLog(@"changed newDocument %@",[ejson invokeMethod:@"stringify" withArguments:@[newDocument]]);
             NSMutableDictionary* cachedDocument = _cache[documentID];
             [cachedDocument addEntriesFromDictionary:fields];
@@ -90,53 +94,39 @@ static NSString* const kMeteorDocumentIDKey = @"_id";
             
             [obj willAccessValueForKey: nil];
             [context refreshObject:obj mergeChanges: YES];
-            
-            NSNotification* changeNotification = [NSNotification notificationWithName: NSManagedObjectContextObjectsDidChangeNotification
-                                                                          object: context
-                                                                        userInfo: @{NSUpdatedObjectsKey : @[obj]}];
-            [context mergeChangesFromContextDidSaveNotification: changeNotification];
         }];
         [_liveQueryHandles addObject:changedHandle];
 
         MHMongoLiveQueryHandle* addedHandle = [_cursor observeDocumentAdded:^(NSDictionary *document) {
-            NSLog(@"added %@",document);
+            NSLog(@"observeDocumentAdded %@",document);
             NSManagedObject* obj = [self _newObjectInContext:context forEntity:fetchRequest.entity document:document];
- 
-            [obj willAccessValueForKey: nil];
-            [context refreshObject:obj mergeChanges: YES];
             
-            NSNotification* changeNotification = [NSNotification notificationWithName: NSManagedObjectContextObjectsDidChangeNotification
-                                                                          object: context
-                                                                        userInfo: @{NSInsertedObjectsKey : @[obj]}];
-           
-            [context mergeChangesFromContextDidSaveNotification: changeNotification];
+           [obj willAccessValueForKey: nil];
+           [context refreshObject:obj mergeChanges: YES];
         }];
         [_liveQueryHandles addObject:addedHandle];
         
         MHMongoLiveQueryHandle* removedHandle = [_cursor observeDocumentRemoved:^(NSDictionary *oldDocument) {
-            NSLog(@"removed %@",oldDocument);
+            NSLog(@"observeDocumentRemoved %@",oldDocument);
             
             NSString* documentID = oldDocument[kMeteorDocumentIDKey];
             NSManagedObjectID* objectID = [self newObjectIDForEntity:fetchRequest.entity referenceObject:documentID];
             NSManagedObject* obj = [context objectRegisteredForID:objectID];
             
             // the object will be nil if we were the one that deleted it and this is just the notification coming back in.
+            // if we do have the object then we need to fake delete it from the context.
             if(obj){
-                [context deleteObject:obj];
-                
-                NSNotification* changeNotification = [NSNotification notificationWithName: NSManagedObjectContextObjectsDidChangeNotification
-                                                                                   object: context
-                                                                                 userInfo: @{NSDeletedObjectsKey : @[obj]}];
-                
-                [context mergeChangesFromContextDidSaveNotification: changeNotification];
+                NSDictionary* userInfo = @{NSDeletedObjectsKey : [NSSet setWithObject: obj],
+                                            @"managedObjectContext" : context};
+                 [[NSNotificationCenter defaultCenter] postNotificationName:@"_NSObjectsChangedInManagingContextPrivateNotification" object:context userInfo:userInfo];
+                 [[NSNotificationCenter defaultCenter] postNotificationName:NSManagedObjectContextObjectsDidChangeNotification object:context userInfo:userInfo];
             }
         }];
         [_liveQueryHandles addObject:removedHandle];
-        
-        //fetch the records
+    
+        //   fetch the records
         NSArray* documents = [_cursor fetch];
         NSMutableArray* result = [NSMutableArray array];
-        
         //convert to Meteor objects
         for(NSDictionary* document in documents){
             NSManagedObject* obj = [self _newObjectInContext:context forEntity:fetchRequest.entity document:document];
@@ -188,6 +178,7 @@ static NSString* const kMeteorDocumentIDKey = @"_id";
 }
 
 -(NSManagedObject*)_newObjectInContext:(NSManagedObjectContext*)context forEntity:(NSEntityDescription*)entity document:(NSDictionary*)document{
+    NSLog(@"_newObjectInContext");
     NSString* documentID = document[kMeteorDocumentIDKey];
     NSManagedObjectID* objectID = [self newObjectIDForEntity:entity referenceObject:documentID];
     
@@ -231,11 +222,13 @@ static NSString* const kMeteorDocumentIDKey = @"_id";
 
 // increment that its being used
 - (void)managedObjectContextDidRegisterObjectsWithIDs:(NSArray*)objectIDs{
+    NSLog(@"Registered objects");
     //[_destinationPersistentStore managedObjectContextDidRegisterObjectsWithIDs:objectIDs];
 }
 
 // decrement that its being used
 - (void)managedObjectContextDidUnregisterObjectsWithIDs:(NSArray*)objectIDs{
+    NSLog(@"Unregistered objects");
 #warning - todo improve this to work with multiple contexts.
     for(NSManagedObjectID* objectID in objectIDs){
         NSString* documentID = (NSString*)[self referenceObjectForObjectID:objectID];

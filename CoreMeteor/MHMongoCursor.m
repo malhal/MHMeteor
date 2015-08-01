@@ -57,7 +57,7 @@
 
 -(MHMongoLiveQueryHandle*)observeDocumentAdded:(MHMongoCursorDocument)documentAdded{
     id addedBlock = ^(JSValue *documentValue) {
-        NSLog(@"added called");
+        NSLog(@"addedBlock");
         NSDictionary* document = [documentValue toObjectOfClass:[NSDictionary class]];
         // push to next event loop
         dispatch_async(dispatch_get_main_queue(),^{
@@ -69,7 +69,7 @@
 
 -(MHMongoLiveQueryHandle*)observeDocumentAddedAt:(MHMongoCursorDocumentAddedAt)documentAddedAt{
     id addedAtBlock = ^(JSValue *newDocument, JSValue* atIndex, JSValue* before) {
-        NSLog(@"addedAt called");
+        NSLog(@"addedAtBlock");
         NSDictionary* newDict = [newDocument toObjectOfClass:[NSDictionary class]];
         NSNumber* at = [atIndex toObject];
         NSDictionary* beforeDict = [before toObjectOfClass:[NSDictionary class]];
@@ -83,6 +83,7 @@
 
 -(MHMongoLiveQueryHandle*)observeDocumentChanged:(MHMongoCursorDocumentChanged)documentChanged{
     id changedBlock = ^(JSValue *newDocument, JSValue* oldDocument) {
+        NSLog(@"changedBlock");
         NSDictionary* newDict = [newDocument toObjectOfClass:[NSDictionary class]];
         NSDictionary* oldDict = [oldDocument toObjectOfClass:[NSDictionary class]];
         dispatch_async(dispatch_get_main_queue(),^{
@@ -94,6 +95,7 @@
 
 -(MHMongoLiveQueryHandle*)observeDocumentRemoved:(MHMongoCursorDocument)removedDocument{
     id removedBlock = ^(JSValue* documentValue) {
+        NSLog(@"removedBlock");
         NSDictionary* document = [documentValue toObjectOfClass:[NSDictionary class]];
         dispatch_async(dispatch_get_main_queue(),^{
             removedDocument(document);
@@ -171,6 +173,7 @@
 
 -(MHMongoLiveQueryHandle*)observeChangesDocumentIDRemoved:(MHMongoCursorDocumentID)documentIDRemoved{
     id removedBlock = ^(JSValue *documentIDValue) {
+        NSLog(@"removedBlock");
         NSString* documentID = [documentIDValue toString];
         dispatch_async(dispatch_get_main_queue(),^{
             documentIDRemoved(documentID);

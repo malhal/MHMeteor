@@ -10,6 +10,14 @@
 #import "MHMongoCursor.h"
 #import "MHMeteor.h"
 #import <CoreFoundation/CoreFoundation.h>
+#import "MongoDBPredicateAdaptor.h"
+
+ NSString * const MHMongoCollectionSortOption = @"sort";
+ NSString * const MHMongoCollectionSkipOption = @"skip";
+ NSString * const MHMongoCollectionLimitOption = @"limit";
+ NSString * const MHMongoCollectionFieldsOption = @"fields";
+ NSString * const MHMongoCollectionReactiveOption = @"reactive";
+ NSString * const MHMongoCollectionTransformOption = @"transform";
 
 @interface MHMongoCursor(Private)
 
@@ -19,11 +27,6 @@
 
 @implementation MHMongoCollection{
     NSMutableArray* _cursors;
-    NSDictionary* _modifier;
-    NSArray* _args;
-    JSManagedValue* _managedValue;
-    MHMeteor* _meteor;
-    JSValue* _value;
 }
 
 - (instancetype)initWithMeteor:(MHMeteor*)meteor value:(JSValue*)value{
@@ -62,10 +65,9 @@
     
     MHMongoCursor* cursor = [[MHMongoCursor alloc] _initWithSelector:selector
                                                              options:options
-                                                              meteor:_meteor
+                                                              meteor:self.meteor
                                                                value:[self invokeMethod:@"find" withArguments:@[selector,options]]];
     [_cursors addObject:cursor];
-    
     return cursor;
 }
 
@@ -85,19 +87,12 @@
     return [self updateDocumentWithID:documentID modifier:@{@"$set" : fields}];
 }
 
--(void)updateWithMongoSelector:(NSDictionary*)mongoSelector completionHandler:(void(^)(NSError*, NSInteger))completionHandler{
-    
-}
-
 -(void)removeDocumentWithID:(NSString*)documentID documentRemoved:(MHMongoCollectionDocumentRemoved)documentRemoved{
      NSAssert(documentID, @"documentID cannot be nil");
     [self invokeMethod:@"remove" withArguments:@[documentID]];
 }
 
 -(void)insertDocument:(NSDictionary*)document documentInserted:(MHMongoCollectionDocumentInserted)documentInserted{
-//    id inserted = ^(JSValue* errorValue, JSValue* documentIDValue){
-//        
-//    };
     NSAssert(document, @"document cannot be nil");
     [self invokeMethod:@"insert" withArguments:@[document]];
 }

@@ -35,7 +35,7 @@ Many other methods in the Meteor API have been implemented, such as collections,
 CoreMeteor was created by [Malcolm Hall](http://www.malcolmhall.com)
 
 ## Contact 
-Follow Malcolm Hall on [Twitter](http://twitter.com/malhal) and [GitHub](http://github.com/malcolmhall)
+Follow Malcolm Hall on [Twitter](http://twitter.com/malhal) and [GitHub](http://github.com/malhal)
 
 ## License
 CoreMeteor is available under the MIT license.

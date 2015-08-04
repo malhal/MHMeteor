@@ -15,7 +15,6 @@
 static NSString* const kMeteorDocumentIDKey = @"_id";
 
 @interface MHMeteorIncrementalStore()
-@property (retain) NSMutableDictionary* cache;
 @property (retain) NSMutableArray* liveQueryHandles;
 @property (retain) MHMongoCursor* cursor;
 @end
@@ -39,7 +38,6 @@ static NSString* const kMeteorDocumentIDKey = @"_id";
     _meteor = self.options[@"meteor"];
     NSAssert(_meteor, @"meteor must be in the options dictionary");
     self.liveQueryHandles = [NSMutableArray array];
-    self.cache = [NSMutableDictionary dictionary];
     return YES;
 }
 
@@ -67,7 +65,7 @@ static NSString* const kMeteorDocumentIDKey = @"_id";
             }
         }
         NSMutableDictionary* options = [NSMutableDictionary dictionary];
-        
+        options[@"fields"] =  @{@"_id" : @1};
         if(fetchRequest.sortDescriptors.count){
             //todo: make real
             NSMutableArray* fixed = [NSMutableArray array];
@@ -76,6 +74,7 @@ static NSString* const kMeteorDocumentIDKey = @"_id";
             }
             options[@"sort"] = fixed;
         }
+        //testingb
         if(fetchRequest.fetchOffset > 0){
             options[MHMongoCollectionSkipOption] = @(fetchRequest.fetchOffset);
         }
@@ -84,11 +83,7 @@ static NSString* const kMeteorDocumentIDKey = @"_id";
         
         //observe changes before fetching so we don't miss any.
         MHMongoLiveQueryHandle* changedHandle = [_cursor observeChangesDocumentIDChanged:^(NSString *documentID, NSDictionary *fields) {
-            NSLog(@"observeChangesDocumentIDChanged %@ %@", documentID, fields);
-            //NSLog(@"changed newDocument %@",[ejson invokeMethod:@"stringify" withArguments:@[newDocument]]);
-            NSMutableDictionary* cachedDocument = _cache[documentID];
-            [cachedDocument addEntriesFromDictionary:fields];
-            
+            NSLog(@"observeChangesDocumentIDChanged %@", documentID);
             NSManagedObjectID* objectID = [self newObjectIDForEntity:fetchRequest.entity referenceObject:documentID];
             NSManagedObject* obj = [context objectRegisteredForID:objectID];
             
@@ -97,19 +92,18 @@ static NSString* const kMeteorDocumentIDKey = @"_id";
         }];
         [_liveQueryHandles addObject:changedHandle];
 
-        MHMongoLiveQueryHandle* addedHandle = [_cursor observeDocumentAdded:^(NSDictionary *document) {
-            NSLog(@"observeDocumentAdded %@",document);
-            NSManagedObject* obj = [self _newObjectInContext:context forEntity:fetchRequest.entity document:document];
+        MHMongoLiveQueryHandle* addedHandle = [_cursor observeChangesDocumentIDAdded:^(NSString *documentID, NSDictionary *fields) {
+            NSLog(@"observeChangesDocumentIDAdded %@", documentID);
+            NSManagedObjectID* objectID = [self newObjectIDForEntity:fetchRequest.entity referenceObject:documentID];
+            NSManagedObject* obj = [context objectWithID:objectID];
             
            [obj willAccessValueForKey: nil];
            [context refreshObject:obj mergeChanges: YES];
         }];
         [_liveQueryHandles addObject:addedHandle];
         
-        MHMongoLiveQueryHandle* removedHandle = [_cursor observeDocumentRemoved:^(NSDictionary *oldDocument) {
-            NSLog(@"observeDocumentRemoved %@",oldDocument);
-            
-            NSString* documentID = oldDocument[kMeteorDocumentIDKey];
+        MHMongoLiveQueryHandle* removedHandle = [_cursor observeChangesDocumentIDRemoved:^(NSString *documentID) {
+            NSLog(@"observeChangesDocumentIDRemoved %@", documentID);
             NSManagedObjectID* objectID = [self newObjectIDForEntity:fetchRequest.entity referenceObject:documentID];
             NSManagedObject* obj = [context objectRegisteredForID:objectID];
             
@@ -124,12 +118,13 @@ static NSString* const kMeteorDocumentIDKey = @"_id";
         }];
         [_liveQueryHandles addObject:removedHandle];
     
-        //   fetch the records
+        // fetch the records, if the subscription isn't ready there won't be any and they will arrive in the added handler instead.
         NSArray* documents = [_cursor fetch];
         NSMutableArray* result = [NSMutableArray array];
         //convert to Meteor objects
         for(NSDictionary* document in documents){
-            NSManagedObject* obj = [self _newObjectInContext:context forEntity:fetchRequest.entity document:document];
+            NSManagedObjectID* objectID = [self newObjectIDForEntity:fetchRequest.entity referenceObject:document[@"_id"]];
+            NSManagedObject* obj = [context objectWithID:objectID];
             [result addObject:obj];
         }
         return result;
@@ -177,24 +172,13 @@ static NSString* const kMeteorDocumentIDKey = @"_id";
     }
 }
 
--(NSManagedObject*)_newObjectInContext:(NSManagedObjectContext*)context forEntity:(NSEntityDescription*)entity document:(NSDictionary*)document{
-    NSLog(@"_newObjectInContext");
-    NSString* documentID = document[kMeteorDocumentIDKey];
-    NSManagedObjectID* objectID = [self newObjectIDForEntity:entity referenceObject:documentID];
-    
-    NSMutableDictionary* d = [NSMutableDictionary dictionaryWithDictionary:document];
-    [d removeObjectForKey:kMeteorDocumentIDKey];
-    _cache[documentID] = d;
-
-    NSManagedObject* obj = [context objectWithID:objectID];
-
-    return obj;
-}
-
 - (NSIncrementalStoreNode *)newValuesForObjectWithID:(NSManagedObjectID*)objectID withContext:(NSManagedObjectContext*)context error:(NSError**)error{
-    NSLog(@"newValuesForObjectWithID");
+    //NSLog(@"newValuesForObjectWithID");
     NSString* documentID = (NSString*)[self referenceObjectForObjectID:objectID];
-    NSMutableDictionary* doc = (NSMutableDictionary*)_cache[documentID];
+
+    MHMongoCollection* collection = [_meteor collectionForGlobalID:objectID.entity.name];
+    NSDictionary* options = @{@"fields" : @{@"_id" : @0}};
+    NSDictionary* doc = [collection findOneWithDocumentID:documentID options:options];
     
     NSIncrementalStoreNode* node =
     [[NSIncrementalStoreNode alloc] initWithObjectID:objectID
@@ -213,7 +197,7 @@ static NSString* const kMeteorDocumentIDKey = @"_id";
     NSMutableArray *permanentIDs = [NSMutableArray arrayWithCapacity:array.count];
     [array enumerateObjectsUsingBlock:^(NSManagedObject* obj, NSUInteger idx, BOOL *stop) {
         
-        NSString* documentID = [[obj.objectID.URIRepresentation lastPathComponent] substringFromIndex:1]; // removes the t and we are left with a GUID that makes a great mongo ID.
+        NSString* documentID = [[obj.objectID.URIRepresentation lastPathComponent] substringFromIndex:1]; // removes the t prefix and we are left with a GUID that makes a great document ID.
         NSManagedObjectID* objectID = [self newObjectIDForEntity:obj.entity referenceObject:documentID];
         [permanentIDs addObject:objectID];
     }];
@@ -221,19 +205,21 @@ static NSString* const kMeteorDocumentIDKey = @"_id";
 }
 
 // increment that its being used
+/*
 - (void)managedObjectContextDidRegisterObjectsWithIDs:(NSArray*)objectIDs{
     NSLog(@"Registered objects");
     //[_destinationPersistentStore managedObjectContextDidRegisterObjectsWithIDs:objectIDs];
 }
-
+*/
 // decrement that its being used
+/*
 - (void)managedObjectContextDidUnregisterObjectsWithIDs:(NSArray*)objectIDs{
     NSLog(@"Unregistered objects");
 #warning - todo improve this to work with multiple contexts.
     for(NSManagedObjectID* objectID in objectIDs){
         NSString* documentID = (NSString*)[self referenceObjectForObjectID:objectID];
-        [_cache removeObjectForKey:documentID];
     }
 }
+*/
 
 @end

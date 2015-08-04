@@ -9,7 +9,7 @@
 
 Pod::Spec.new do |s|
   s.name             = "CoreMeteor"
-  s.version          = "0.1.1"
+  s.version          = "0.1.2"
   s.summary          = "A short description of CoreMeteor."
   s.description      = <<-DESC
                        An optional longer description of CoreMeteor

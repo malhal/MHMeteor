@@ -39,10 +39,17 @@
 
 -(void)setValue:(JSValue *)value{
     [super setValue:value];
+    // observe
     for(MHMongoLiveQueryHandle* observeQueryHandle in _observeQueryHandles){
         JSValue* callbacks = [JSValue valueWithNewObjectInContext:self.value.context];
         callbacks[observeQueryHandle.type] = observeQueryHandle.block;
         observeQueryHandle.value = [self invokeMethod:@"observe" withArguments:@[callbacks]];
+    }
+    // observe changes
+    for(MHMongoLiveQueryHandle* observeChangesQueryHandle in _observeChangesQueryHandles){
+        JSValue* callbacks = [JSValue valueWithNewObjectInContext:self.value.context];
+        callbacks[observeChangesQueryHandle.type] = observeChangesQueryHandle.block;
+        observeChangesQueryHandle.value = [self invokeMethod:@"observeChanges" withArguments:@[callbacks]];
     }
 }
 
@@ -57,7 +64,7 @@
 
 -(MHMongoLiveQueryHandle*)observeDocumentAdded:(MHMongoCursorDocument)documentAdded{
     id addedBlock = ^(JSValue *documentValue) {
-        NSLog(@"addedBlock");
+        //NSLog(@"addedBlock");
         NSDictionary* document = [documentValue toObjectOfClass:[NSDictionary class]];
         // push to next event loop
         dispatch_async(dispatch_get_main_queue(),^{
@@ -69,7 +76,7 @@
 
 -(MHMongoLiveQueryHandle*)observeDocumentAddedAt:(MHMongoCursorDocumentAddedAt)documentAddedAt{
     id addedAtBlock = ^(JSValue *newDocument, JSValue* atIndex, JSValue* before) {
-        NSLog(@"addedAtBlock");
+        //NSLog(@"addedAtBlock");
         NSDictionary* newDict = [newDocument toObjectOfClass:[NSDictionary class]];
         NSNumber* at = [atIndex toObject];
         NSDictionary* beforeDict = [before toObjectOfClass:[NSDictionary class]];
@@ -83,7 +90,7 @@
 
 -(MHMongoLiveQueryHandle*)observeDocumentChanged:(MHMongoCursorDocumentChanged)documentChanged{
     id changedBlock = ^(JSValue *newDocument, JSValue* oldDocument) {
-        NSLog(@"changedBlock");
+        //NSLog(@"changedBlock");
         NSDictionary* newDict = [newDocument toObjectOfClass:[NSDictionary class]];
         NSDictionary* oldDict = [oldDocument toObjectOfClass:[NSDictionary class]];
         dispatch_async(dispatch_get_main_queue(),^{
@@ -95,7 +102,7 @@
 
 -(MHMongoLiveQueryHandle*)observeDocumentRemoved:(MHMongoCursorDocument)removedDocument{
     id removedBlock = ^(JSValue* documentValue) {
-        NSLog(@"removedBlock");
+        //NSLog(@"removedBlock");
         NSDictionary* document = [documentValue toObjectOfClass:[NSDictionary class]];
         dispatch_async(dispatch_get_main_queue(),^{
             removedDocument(document);
@@ -122,7 +129,7 @@
 -(MHMongoLiveQueryHandle*)_observeChanges:(NSString*)type block:(id)block{
     JSValue* v = [self invokeMethod:@"observeChanges" withArguments:@[@{type : block}]];
     MHMongoLiveQueryHandle* liveQueryHandle = [[MHMongoLiveQueryHandle alloc] _initWithType:type block:block meteor:self.meteor value:v];
-    [_observeQueryHandles addObject:liveQueryHandle];
+    [_observeChangesQueryHandles addObject:liveQueryHandle];
     return liveQueryHandle;
 }
 
@@ -173,7 +180,6 @@
 
 -(MHMongoLiveQueryHandle*)observeChangesDocumentIDRemoved:(MHMongoCursorDocumentID)documentIDRemoved{
     id removedBlock = ^(JSValue *documentIDValue) {
-        NSLog(@"removedBlock");
         NSString* documentID = [documentIDValue toString];
         dispatch_async(dispatch_get_main_queue(),^{
             documentIDRemoved(documentID);

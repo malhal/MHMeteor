@@ -71,6 +71,29 @@
     return cursor;
 }
 
+-(NSDictionary*)findOneWithDocumentID:(NSString*)documentID options:(NSDictionary*)options{
+    NSAssert(documentID, @"documentID cannot be nil");
+    return [self _findOneWithSelector:documentID options:options];
+}
+
+-(NSDictionary*)findOneWithMongoSelector:(NSDictionary*)mongoSelector options:(NSDictionary*)options{
+    if(!mongoSelector){
+        mongoSelector = [NSDictionary dictionary];
+    }
+    return [self _findOneWithSelector:mongoSelector options:options];
+}
+
+// selector could either be a dictionary or a string
+-(NSDictionary*)_findOneWithSelector:(id)selector options:(NSDictionary*)options{
+    NSAssert(selector, @"selector cannot be null"); // because a nil would end the arguments array.
+    if(!options){
+        options = [NSDictionary dictionary];
+    }
+    JSValue* documentValue = [self invokeMethod:@"findOne" withArguments:@[selector, options]];
+    return [documentValue toObjectOfClass:[NSDictionary class]];
+}
+
+
 -(void)_updateDocumentWithSelector:(id)selector modifier:(NSDictionary*)modifier{
     NSAssert(selector, @"selector cannot be nil");
     if(!modifier){

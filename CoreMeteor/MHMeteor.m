@@ -169,6 +169,21 @@ static int kLoadRequestRetryDelay = 3; // seconds
     return [self.value invokeMethod:method withArguments:arguments];
 }
 
+/*
+-(NSString*)newObjectID{
+    [self wakeyWakey];
+    JSValue* objectIDValue = [self.value.context[@"Mongo"][@"ObjectID"] constructWithArguments:nil];
+    JSValue* documentIDValue = [objectIDValue invokeMethod:@"toHexString" withArguments:nil];
+    return documentIDValue.toString;
+}
+ */
+
+-(NSString*)newRandomID{
+    [self wakeyWakey];
+    JSValue* documentIDValue = [self.value.context[@"Random"] invokeMethod:@"id" withArguments:nil];
+    return documentIDValue.toString;
+}
+
 -(void)_startedUp:(void(^)())startedUp{
     NSAssert(startedUp, @"startedUp cannot be null");
     id startupBlock = ^(){

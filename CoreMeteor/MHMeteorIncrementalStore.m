@@ -65,7 +65,10 @@ static NSString* const kMeteorDocumentIDKey = @"_id";
             }
         }
         NSMutableDictionary* options = [NSMutableDictionary dictionary];
-        options[@"fields"] =  @{@"_id" : @1};
+        
+        // we can't only request the id because then observe changes doesn't work.
+        //options[@"fields"] =  @{@"_id" : @1};
+        
         if(fetchRequest.sortDescriptors.count){
             //todo: make real
             NSMutableArray* fixed = [NSMutableArray array];
@@ -196,8 +199,7 @@ static NSString* const kMeteorDocumentIDKey = @"_id";
 - (NSArray*)obtainPermanentIDsForObjects:(NSArray*)array error:(NSError **)error{
     NSMutableArray *permanentIDs = [NSMutableArray arrayWithCapacity:array.count];
     [array enumerateObjectsUsingBlock:^(NSManagedObject* obj, NSUInteger idx, BOOL *stop) {
-        
-        NSString* documentID = [[obj.objectID.URIRepresentation lastPathComponent] substringFromIndex:1]; // removes the t prefix and we are left with a GUID that makes a great document ID.
+        NSString* documentID = _meteor.newRandomID;
         NSManagedObjectID* objectID = [self newObjectIDForEntity:obj.entity referenceObject:documentID];
         [permanentIDs addObject:objectID];
     }];

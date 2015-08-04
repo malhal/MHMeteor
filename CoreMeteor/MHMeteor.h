@@ -19,6 +19,9 @@ extern NSString* const MHMeteorErrorDomain;
 
 @property (nonatomic, strong, readonly) JSValue* value;
 
+// convenience and importantly prevents the Web Thread [CFRunLoopTimer release] crash.
+- (JSValue *)invokeMethod:(NSString *)method withArguments:(NSArray *)arguments;
+
 //loads Meteor with default caching, timeouts for 30 seconds.
 //It will keep trying to connect and call the completion handler when ready.
 +(void)startupMeteorWithURL:(NSURL*)url startedUpHandler:(void(^)(MHMeteor*, BOOL isRestart))startedUpHandler;
@@ -32,6 +35,7 @@ extern NSString* const MHMeteorErrorDomain;
 // use for constructing a collection that is not already constructed in the javascript's isClient code, but must be in its isServer code. Usually all lower case.
 - (MHMongoCollection*)collectionNamed:(NSString*)name;
 
+-(NSString*)newRandomID;
 
 -(void)subscribeWithName:(NSString*)subscriptionName readyHandler:(void(^)())readyHandler;
 

@@ -28,9 +28,9 @@
     self.window.rootViewController = nil;
     MasterViewController *controller = (MasterViewController *)navigationController.topViewController;
     
-     NSString* url = @"http://127.0.0.1:3000";
+   //  NSString* url = @"http://127.0.0.1:3000";
    // NSString* url = @"http://10.0.1.101:3001";
- //   NSString* url = @"http://coremeteor.meteor.com";
+    NSString* url = @"http://coremeteor.meteor.com";
     
     [MHMeteor startupMeteorWithURL:[NSURL URLWithString:url] startedUpHandler:^(MHMeteor *meteor, BOOL isRestart) {
         _meteor = meteor;

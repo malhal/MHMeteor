@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		EC6906CC1B710B420038E21F /* MHSession.m in Sources */ = {isa = PBXBuildFile; fileRef = EC6906CB1B710B420038E21F /* MHSession.m */; };
 		ECEC18F01B6851BC0094493D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = ECEC18EF1B6851BC0094493D /* main.m */; };
 		ECEC18F31B6851BC0094493D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = ECEC18F21B6851BC0094493D /* AppDelegate.m */; };
 		ECEC18F61B6851BC0094493D /* CoreMeteorDemo.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = ECEC18F41B6851BC0094493D /* CoreMeteorDemo.xcdatamodeld */; };
@@ -36,6 +37,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		EC6906CA1B710B420038E21F /* MHSession.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MHSession.h; sourceTree = "<group>"; };
+		EC6906CB1B710B420038E21F /* MHSession.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MHSession.m; sourceTree = "<group>"; };
 		ECEC18EA1B6851BC0094493D /* CoreMeteorDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CoreMeteorDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		ECEC18EE1B6851BC0094493D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		ECEC18EF1B6851BC0094493D /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -168,6 +171,8 @@
 				ECEC19251B6851D00094493D /* MHMongoLiveQueryHandle.m */,
 				ECF7AF951B6AEC0900FD2BE9 /* MongoDBPredicateAdaptor.h */,
 				ECF7AF961B6AEC0900FD2BE9 /* MongoDBPredicateAdaptor.m */,
+				EC6906CA1B710B420038E21F /* MHSession.h */,
+				EC6906CB1B710B420038E21F /* MHSession.m */,
 			);
 			name = CoreMeteor;
 			path = ../CoreMeteor;
@@ -278,6 +283,7 @@
 				ECF7AF971B6AEC0900FD2BE9 /* MongoDBPredicateAdaptor.m in Sources */,
 				ECEC192B1B6851D00094493D /* MHMongoLiveQueryHandle.m in Sources */,
 				ECEC18FC1B6851BC0094493D /* DetailViewController.m in Sources */,
+				EC6906CC1B710B420038E21F /* MHSession.m in Sources */,
 				ECEC18F91B6851BC0094493D /* MasterViewController.m in Sources */,
 				ECEC19281B6851D00094493D /* MHMeteorJSManagedValue.m in Sources */,
 				ECEC18F31B6851BC0094493D /* AppDelegate.m in Sources */,

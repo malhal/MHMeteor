@@ -8,6 +8,7 @@
 #import <UIKit/UIKit.h>
 #import "MHMeteor.h"
 #import "MHMongoCollection.h"
+#import "MHSession.h"
 
 NSString* const MHMeteorErrorDomain = @"MHMeteorErrorDomain";
 
@@ -32,6 +33,7 @@ static int kLoadRequestRetryDelay = 3; // seconds
     NSMutableDictionary* _subscriptionHandlesByRecordSet;
     void(^_startedUp)();
     NSURLRequest* _request;
+    MHSession* _session;
 }
 
 + (void)initialize
@@ -108,7 +110,10 @@ static int kLoadRequestRetryDelay = 3; // seconds
     [[UIApplication sharedApplication].keyWindow addSubview:_webView];
 }
 
+// update everything created on previous load
 -(void)setValue:(JSValue *)value{
+    _value = value;
+    
     //refresh all the collections
     for(NSString* globalID in _collectionsByGlobalID.allKeys){
         MHMongoCollection* collection = _collectionsByGlobalID[globalID];
@@ -118,7 +123,10 @@ static int kLoadRequestRetryDelay = 3; // seconds
         MHMongoCollection* collection = _collectionsByGlobalID[name];
         collection.value = [value.context[@"Mongo"][@"Collection"]  constructWithArguments:@[name]];
     }
-    _value = value;
+    
+    if(_session){
+        [_session setValue:value.context[@"Session"]];
+    }
 }
 
 - (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error
@@ -215,8 +223,12 @@ static int kLoadRequestRetryDelay = 3; // seconds
     [self invokeMethod:@"subscribe" withArguments:@[subscriptionName, readyBlock]];
 }
 
-
--(void)dealloc{
-    NSLog(@"dealloc");
+-(MHSession*)session{
+    if(_session){
+        return _session;
+    }
+    _session = [[MHSession alloc] initWithMeteor:self value:self.value.context[@"Session"]];
+    return _session;
 }
+
 @end

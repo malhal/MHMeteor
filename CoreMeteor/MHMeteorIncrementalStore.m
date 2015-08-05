@@ -21,6 +21,7 @@ static NSString* const kMeteorDocumentIDKey = @"_id";
 
 @implementation MHMeteorIncrementalStore{
     MHMeteor* _meteor;
+    NSMutableDictionary* _changedUserInfo;
 }
 
 +(void)initialize{
@@ -38,6 +39,7 @@ static NSString* const kMeteorDocumentIDKey = @"_id";
     _meteor = self.options[@"meteor"];
     NSAssert(_meteor, @"meteor must be in the options dictionary");
     self.liveQueryHandles = [NSMutableArray array];
+    _changedUserInfo = [NSMutableDictionary dictionary];
     return YES;
 }
 
@@ -89,9 +91,11 @@ static NSString* const kMeteorDocumentIDKey = @"_id";
             NSLog(@"observeChangesDocumentIDChanged %@", documentID);
             NSManagedObjectID* objectID = [self newObjectIDForEntity:fetchRequest.entity referenceObject:documentID];
             NSManagedObject* obj = [context objectRegisteredForID:objectID];
-            
-            [obj willAccessValueForKey: nil];
-            [context refreshObject:obj mergeChanges: YES];
+            // obj might have been deleted
+            if(obj){
+                [context refreshObject:obj mergeChanges: YES];
+                [self _object:obj didChange:NSUpdatedObjectsKey context:context];
+            }
         }];
         [_liveQueryHandles addObject:changedHandle];
 
@@ -100,8 +104,9 @@ static NSString* const kMeteorDocumentIDKey = @"_id";
             NSManagedObjectID* objectID = [self newObjectIDForEntity:fetchRequest.entity referenceObject:documentID];
             NSManagedObject* obj = [context objectWithID:objectID];
             
-           [obj willAccessValueForKey: nil];
-           [context refreshObject:obj mergeChanges: YES];
+           //[obj willAccessValueForKey: nil];
+           [context refreshObject:obj mergeChanges: NO];
+           [self _object:obj didChange:NSInsertedObjectsKey context:context];
         }];
         [_liveQueryHandles addObject:addedHandle];
         
@@ -113,10 +118,7 @@ static NSString* const kMeteorDocumentIDKey = @"_id";
             // the object will be nil if we were the one that deleted it and this is just the notification coming back in.
             // if we do have the object then we need to fake delete it from the context.
             if(obj){
-                NSDictionary* userInfo = @{NSDeletedObjectsKey : [NSSet setWithObject: obj],
-                                            @"managedObjectContext" : context};
-                 [[NSNotificationCenter defaultCenter] postNotificationName:@"_NSObjectsChangedInManagingContextPrivateNotification" object:context userInfo:userInfo];
-                 [[NSNotificationCenter defaultCenter] postNotificationName:NSManagedObjectContextObjectsDidChangeNotification object:context userInfo:userInfo];
+                [self _object:obj didChange:NSDeletedObjectsKey context:context];
             }
         }];
         [_liveQueryHandles addObject:removedHandle];
@@ -159,6 +161,31 @@ static NSString* const kMeteorDocumentIDKey = @"_id";
     return nil;
 }
 
+// Coelesce the notifications for effiency.
+// when using GroundDB objects are deleted and inserted at the same time.
+-(void)_object:(NSManagedObject*)object didChange:(NSString*)changeType context:(NSManagedObjectContext*)context{
+    NSLog(@"didChange %@", changeType);
+    NSMutableSet* set = _changedUserInfo[changeType];
+    if(!set){
+        set = [NSMutableSet set];
+        _changedUserInfo[changeType] = set;
+    }
+    [set addObject:object];
+    [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(_delayedObjectsDidChange:) object:context];
+    [self performSelector:@selector(_delayedObjectsDidChange:) withObject:context afterDelay:0];
+}
+
+-(void)_delayedObjectsDidChange:(NSManagedObjectContext*)context{
+    NSLog(@"_delayedObjectsDidChange");
+    _changedUserInfo[@"managedObjectContext"] = context;
+    // Post the private notification for NSFetchedResultsController
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"_NSObjectsChangedInManagingContextPrivateNotification" object:context userInfo:_changedUserInfo];
+    // Post the public notification
+    [[NSNotificationCenter defaultCenter] postNotificationName:NSManagedObjectContextObjectsDidChangeNotification object:context userInfo:_changedUserInfo];
+    // reset the user info for next time
+    [_changedUserInfo removeAllObjects];
+}
+
 // fix issue with boolean NSNumbers coming out of NSManagedObjects ending up in javascript as integers.
 -(void)_convertBooleansInDictionary:(NSMutableDictionary*)dict{
     for(NSString* key in dict.allKeys){
@@ -176,7 +203,7 @@ static NSString* const kMeteorDocumentIDKey = @"_id";
 }
 
 - (NSIncrementalStoreNode *)newValuesForObjectWithID:(NSManagedObjectID*)objectID withContext:(NSManagedObjectContext*)context error:(NSError**)error{
-    //NSLog(@"newValuesForObjectWithID");
+    NSLog(@"newValuesForObjectWithID");
     NSString* documentID = (NSString*)[self referenceObjectForObjectID:objectID];
 
     MHMongoCollection* collection = [_meteor collectionForGlobalID:objectID.entity.name];

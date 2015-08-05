@@ -67,9 +67,9 @@
         //NSLog(@"addedBlock");
         NSDictionary* document = [documentValue toObjectOfClass:[NSDictionary class]];
         // push to next event loop
-        dispatch_async(dispatch_get_main_queue(),^{
+      //  dispatch_async(dispatch_get_main_queue(),^{
             documentAdded(document);
-        });
+     //   });
     };
     return [self _observe:@"added" block:addedBlock];
 }
@@ -81,9 +81,9 @@
         NSNumber* at = [atIndex toObject];
         NSDictionary* beforeDict = [before toObjectOfClass:[NSDictionary class]];
         // push to next event loop
-        dispatch_async(dispatch_get_main_queue(),^{
+        //dispatch_async(dispatch_get_main_queue(),^{
             documentAddedAt(newDict, at, beforeDict);
-        });
+     //   });
     };
     return [self _observe:@"addedAt" block:addedAtBlock];
 }
@@ -93,9 +93,9 @@
         //NSLog(@"changedBlock");
         NSDictionary* newDict = [newDocument toObjectOfClass:[NSDictionary class]];
         NSDictionary* oldDict = [oldDocument toObjectOfClass:[NSDictionary class]];
-        dispatch_async(dispatch_get_main_queue(),^{
+    //    dispatch_async(dispatch_get_main_queue(),^{
             documentChanged(newDict,oldDict);
-        });
+    //    });
     };
     return [self _observe:@"changed" block:changedBlock];
 }
@@ -104,9 +104,9 @@
     id removedBlock = ^(JSValue* documentValue) {
         //NSLog(@"removedBlock");
         NSDictionary* document = [documentValue toObjectOfClass:[NSDictionary class]];
-        dispatch_async(dispatch_get_main_queue(),^{
+     //   dispatch_async(dispatch_get_main_queue(),^{
             removedDocument(document);
-        });
+     //   });
     };
     return [self _observe:@"removed" block:removedBlock];
 }
@@ -116,9 +116,9 @@
         NSDictionary* dict = [document toObjectOfClass:[NSDictionary class]];
         NSNumber* from = [fromIndex toObject];
         NSNumber* to = [toIndex toObject];
-        dispatch_async(dispatch_get_main_queue(),^{
+      //  dispatch_async(dispatch_get_main_queue(),^{
             movedDocument(dict,from,to,[before toObject]);
-        });
+     //   });
     };
     return [self _observe:@"moved" block:movedBlock];
 };
@@ -137,9 +137,9 @@
     id changedBlock = ^(JSValue *documentIDValue, JSValue* fieldsValue) {
         NSString* documentID = [documentIDValue toString];
         NSDictionary* fields = [fieldsValue toObjectOfClass:[NSDictionary class]];
-        dispatch_async(dispatch_get_main_queue(),^{
+     //   dispatch_async(dispatch_get_main_queue(),^{
             documentIDChanged(documentID, fields);
-        });
+     //   });
     };
     return [self _observeChanges:@"changed" block:changedBlock];
 }
@@ -148,9 +148,9 @@
     id addedBlock = ^(JSValue *documentIDValue, JSValue* fieldsValue) {
         NSString* documentID = [documentIDValue toString];
         NSDictionary* fields = [fieldsValue toObjectOfClass:[NSDictionary class]];
-        dispatch_async(dispatch_get_main_queue(),^{
+      //  dispatch_async(dispatch_get_main_queue(),^{
             documentIDAdded(documentID, fields);
-        });
+      //  });
     };
     return [self _observeChanges:@"added" block:addedBlock];
 }
@@ -160,9 +160,9 @@
         NSString* documentID = [documentIDValue toString];
         NSDictionary* fields = [fieldsValue toObjectOfClass:[NSDictionary class]];
         NSString* beforeDocumentID = [beforeDocumentIDValue toString];
-        dispatch_async(dispatch_get_main_queue(),^{
+       // dispatch_async(dispatch_get_main_queue(),^{
             documentIDAddedBefore(documentID, fields, beforeDocumentID);
-        });
+      //  });
     };
     return [self _observeChanges:@"addedBefore" block:addedBeforeBlock];
 }
@@ -171,9 +171,9 @@
     id movedBeforeBlock = ^(JSValue *documentIDValue, JSValue* beforeDocumentIDValue) {
         NSString* documentID = [documentIDValue toString];
         NSString* beforeDocumentID = [beforeDocumentIDValue toString];
-        dispatch_async(dispatch_get_main_queue(),^{
+     //   dispatch_async(dispatch_get_main_queue(),^{
             documentIDMovedBefore(documentID, beforeDocumentID);
-        });
+     //   });
     };
     return [self _observeChanges:@"movedBefore" block:movedBeforeBlock];
 }
@@ -181,9 +181,9 @@
 -(MHMongoLiveQueryHandle*)observeChangesDocumentIDRemoved:(MHMongoCursorDocumentID)documentIDRemoved{
     id removedBlock = ^(JSValue *documentIDValue) {
         NSString* documentID = [documentIDValue toString];
-        dispatch_async(dispatch_get_main_queue(),^{
+        //dispatch_async(dispatch_get_main_queue(),^{
             documentIDRemoved(documentID);
-        });
+       // });
     };
     return [self _observeChanges:@"removed" block:removedBlock];
 }

@@ -13,7 +13,7 @@
 
 extern NSString* const MHMeteorErrorDomain;
 
-@class MHMongoCollection;
+@class MHMongoCollection, MHSession;
 
 @interface MHMeteor : NSObject
 
@@ -42,5 +42,7 @@ extern NSString* const MHMeteorErrorDomain;
 -(void)disconnect;
 
 -(void)reconnect;
+
+@property (nonatomic, strong, readonly) MHSession* session;
 
 @end

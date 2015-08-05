@@ -15,5 +15,6 @@
 #import "MHMongoCursor.h"
 #import "MHMeteorJSManagedValue.h"
 #import "MHMeteorIncrementalStore.h"
+#import "MHSession.h"
 
 #endif

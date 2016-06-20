@@ -25,20 +25,30 @@
     
     UINavigationController *navigationController = (UINavigationController *)self.window.rootViewController;
 
-    self.window.rootViewController = nil;
+    self.window.rootViewController = [[UIViewController alloc] init];
     MasterViewController *controller = (MasterViewController *)navigationController.topViewController;
     
-   //  NSString* url = @"http://127.0.0.1:3000";
+    // run the simple-todos meteor app locally and then run this app on the simulator.
+     NSString* url = @"http://127.0.0.1:3000";
    // NSString* url = @"http://10.0.1.101:3001";
-    NSString* url = @"http://coremeteor.meteor.com";
+   // NSString* url = @"http://coremeteor.meteor.com";
     
     [MHMeteor startupMeteorWithURL:[NSURL URLWithString:url] startedUpHandler:^(MHMeteor *meteor, BOOL isRestart) {
         _meteor = meteor;
         self.window.rootViewController = navigationController;
         controller.managedObjectContext = self.managedObjectContext;
+        
+    //    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didChange:) name:NSManagedObjectContextObjectsDidChangeNotification object:nil];
+        
+    //    _meteor.session[@"Malc"] = @"Malc";
+     //   NSString* s = _meteor.session[@"Malc"];
 
     }];
     return YES;
+}
+
+-(void)didChange:(NSNotification*)notification{
+    NSLog(@"didChange %@", notification);
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {

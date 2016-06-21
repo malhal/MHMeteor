@@ -31,7 +31,8 @@ Pod::Spec.new do |s|
   s.requires_arc = true
 
   s.source_files = 'MHMeteor/**/*.{h,m}', 'dependencies/**/*.{h,m}'
-  s.prefix_header_file = 'MHMeteor/MHMeteor-Prefix.pch'
+  s.private_header_files  = 'dependencies/**/*.h'
+
   # s.public_header_files = 'Pod/Classes/**/*.h'
   s.frameworks = 'CoreData', 'JavaScriptCore'
   # s.dependency 'AFNetworking', '~> 2.3'

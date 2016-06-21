@@ -173,7 +173,7 @@ static int kLoadRequestRetryDelay = 3; // seconds
 }
 
 -(void)wakeyWakey{
-    [_webView stringByEvaluatingJavaScriptFromString:nil];
+    [_webView stringByEvaluatingJavaScriptFromString:[NSString string]];
 }
 
 - (JSValue *)invokeMethod:(NSString *)method withArguments:(NSArray *)arguments{

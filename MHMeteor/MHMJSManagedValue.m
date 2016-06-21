@@ -49,7 +49,7 @@
 - (JSValue *)invokeMethod:(NSString *)method withArguments:(NSArray *)arguments{
     // Took a year or for me to figure out this workaround so it has a fun name:
     // http://stackoverflow.com/questions/23168779/ios-cfrunlooptimer-release-message-sent-to-deallocated-instance-error-debug/31673605#31673605
-    [_container.webView stringByEvaluatingJavaScriptFromString:nil];
+    [_container.webView stringByEvaluatingJavaScriptFromString:[NSString string]];
     return [self.value invokeMethod:method withArguments:arguments];
 }
 

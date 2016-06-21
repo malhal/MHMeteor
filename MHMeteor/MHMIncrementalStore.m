@@ -52,8 +52,7 @@ NSString* const MHMIncrementalStoreContainerKey = @"container";
         
         MHMCollection* collection = [_container collectionNamed:fetchRequest.entity.userInfo[kCollectionNameUserInfoKey]];
         if(!collection){
-#warning - todo read the collection name out of a custom entity property created in the model editor.
-            collection = [_container collectionNamed:[fetchRequest.entityName lowercaseString]];
+            collection = [_container collectionNamed:fetchRequest.entity.userInfo[kCollectionNameUserInfoKey]];
             // at this point we don't know if there was a server collection with same name so we can't error.
         }
         NSDictionary* mongoSelector = nil;

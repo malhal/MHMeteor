@@ -5,7 +5,7 @@
       location = "group:LICENSE">
    </FileRef>
    <FileRef
-      location = "group:CoreMeteor.podspec">
+      location = "group:/Users/mh/Development/Github/MHMeteor/MHMeteor.podspec">
    </FileRef>
    <FileRef
       location = "group:MHMeteor.xcodeproj">

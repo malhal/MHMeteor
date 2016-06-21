@@ -30,12 +30,12 @@ Pod::Spec.new do |s|
   s.platform     = :ios, '7.0'
   s.requires_arc = true
 
-  s.source_files = 'MHMeteor/**/*.{h,m}', 'dependencies/**/*.{h,m}'
+  s.source_files = 'MHMeteor/**/*.{h,m}'
 
-#spec.subspec 'SDKit' do |sdkit|
-#sdkit.source_files = 'dependencies/**/*.{h,m}'
-#sdkit.resources    = 'SDKit/**/Assets/*.png'
-#end
+  s.subspec 'SDKit' do |sdkit|
+    sdkit.source_files = 'dependencies/**/*.{h,m}'
+    #sdkit.resources    = 'SDKit/**/Assets/*.png'
+  end
 
   # s.public_header_files = 'Pod/Classes/**/*.h'
   s.frameworks = 'CoreData', 'JavaScriptCore'

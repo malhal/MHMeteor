@@ -6,7 +6,7 @@
 //  Copyright (c) 2015 Malcolm Hall. All rights reserved.
 //
 // CoreMeteorDemo.xcdatamodeld was updated with the new properties.
-// Below 'timestamp' was changed to 'createdAt' and 'Event' was changed to 'Tasks'.
+// Below 'timestamp' was changed to 'createdAt' and 'Event' was changed to 'Task'.
 // didSelectRow was added to make it checked and deselect it.
 // The detail segue was deleted in Main.storyboard to prevent the section from triggering it.
 // The configureCell was changed to show the Task's info.
@@ -155,7 +155,7 @@
     
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
     // Edit the entity name as appropriate.
-    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Tasks" inManagedObjectContext:self.managedObjectContext];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Task" inManagedObjectContext:self.managedObjectContext];
     [fetchRequest setEntity:entity];
 
     // Set the batch size to a suitable number.

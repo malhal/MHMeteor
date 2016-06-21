@@ -13,6 +13,7 @@
 #import "MHMongoCollection.h"
 
 static NSString* const kMeteorDocumentIDKey = @"_id";
+static NSString* const kCollectionNameUserInfoKey = @"collectionName";
 
 @interface MHMeteorIncrementalStore()
 @property (retain) NSMutableArray* liveQueryHandles;
@@ -48,7 +49,7 @@ static NSString* const kMeteorDocumentIDKey = @"_id";
     {
         NSFetchRequest* fetchRequest = (NSFetchRequest*)persistentStoreRequest;
         
-        MHMongoCollection* collection = [_meteor collectionForGlobalID:fetchRequest.entityName];
+        MHMongoCollection* collection = [_meteor collectionNamed:fetchRequest.entity.userInfo[kCollectionNameUserInfoKey]];
         if(!collection){
 #warning - todo read the collection name out of a custom entity property created in the model editor.
             collection = [_meteor collectionNamed:[fetchRequest.entityName lowercaseString]];
@@ -137,14 +138,14 @@ static NSString* const kMeteorDocumentIDKey = @"_id";
     else if(persistentStoreRequest.requestType == NSSaveRequestType){
         NSSaveChangesRequest* request = (NSSaveChangesRequest*)persistentStoreRequest;
         for (NSManagedObject* object in request.updatedObjects) {
-            MHMongoCollection* collection = [_meteor collectionForGlobalID:object.entity.name];
+            MHMongoCollection* collection = [_meteor collectionNamed:object.entity.userInfo[kCollectionNameUserInfoKey]];
             NSString* documentID = (NSString*)[self referenceObjectForObjectID:object.objectID];
             NSMutableDictionary* dict = [NSMutableDictionary dictionaryWithDictionary:object.changedValues];
             [self _convertBooleansInDictionary:dict];
             [collection updateDocumentWithID:documentID setFields:dict];
         }
         for(NSManagedObject* object in request.insertedObjects){
-            MHMongoCollection* collection = [_meteor collectionForGlobalID:object.entity.name];
+            MHMongoCollection* collection = [_meteor collectionNamed:object.entity.userInfo[kCollectionNameUserInfoKey]];
             NSString* documentID = (NSString*)[self referenceObjectForObjectID:object.objectID];
             NSMutableDictionary* dict = [NSMutableDictionary dictionaryWithDictionary:object.changedValues];
             [self _convertBooleansInDictionary:dict];
@@ -152,7 +153,7 @@ static NSString* const kMeteorDocumentIDKey = @"_id";
             [collection insertDocument:dict documentInserted:nil];
         }
         for(NSManagedObject* object in request.deletedObjects){
-            MHMongoCollection* collection = [_meteor collectionForGlobalID:object.entity.name];
+            MHMongoCollection* collection = [_meteor collectionNamed:object.entity.userInfo[kCollectionNameUserInfoKey]];
             NSString* documentID = (NSString*)[self referenceObjectForObjectID:object.objectID];
             [collection removeDocumentWithID:documentID documentRemoved:nil];
         }
@@ -206,7 +207,7 @@ static NSString* const kMeteorDocumentIDKey = @"_id";
     NSLog(@"newValuesForObjectWithID");
     NSString* documentID = (NSString*)[self referenceObjectForObjectID:objectID];
 
-    MHMongoCollection* collection = [_meteor collectionForGlobalID:objectID.entity.name];
+    MHMongoCollection* collection = [_meteor collectionNamed:objectID.entity.userInfo[kCollectionNameUserInfoKey]];
     NSDictionary* options = @{@"fields" : @{@"_id" : @0}};
     NSDictionary* doc = [collection findOneWithDocumentID:documentID options:options];
     
@@ -226,7 +227,7 @@ static NSString* const kMeteorDocumentIDKey = @"_id";
 - (NSArray*)obtainPermanentIDsForObjects:(NSArray*)array error:(NSError **)error{
     NSMutableArray *permanentIDs = [NSMutableArray arrayWithCapacity:array.count];
     [array enumerateObjectsUsingBlock:^(NSManagedObject* obj, NSUInteger idx, BOOL *stop) {
-        NSString* documentID = _meteor.newRandomID;
+        NSString* documentID = _meteor.newObjectID;
         NSManagedObjectID* objectID = [self newObjectIDForEntity:obj.entity referenceObject:documentID];
         [permanentIDs addObject:objectID];
     }];

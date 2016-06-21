@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="7701" systemVersion="14E46" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
-    <entity name="Tasks" representedClassName="">
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="10171" systemVersion="15F34" minimumToolsVersion="Automatic">
+    <entity name="Task" representedClassName="">
         <attribute name="checked" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
         <attribute name="createdAt" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="text" optional="YES" attributeType="String" syncable="YES"/>
-        <userInfo/>
+        <userInfo>
+            <entry key="collectionName" value="tasks"/>
+        </userInfo>
     </entity>
     <elements>
-        <element name="Tasks" positionX="261" positionY="189" width="128" height="90"/>
+        <element name="Task" positionX="261" positionY="189" width="128" height="90"/>
     </elements>
 </model>

@@ -30,12 +30,12 @@ extern NSString* const MHMeteorErrorDomain;
 +(void)startupWithRequest:(NSURLRequest*)request startedUpHandler:(void(^)(MHMeteor*, BOOL isRestart))startedUpHandler;
 
 // use if the collection is already declared in the javascript's isClient code. Usually starts with an uppercase letter, e.g. Tasks
-- (MHMongoCollection*)collectionForGlobalID:(NSString*)globalID;
+//- (MHMongoCollection*)collectionForGlobalID:(NSString*)globalID;
 
 // use for constructing a collection that is not already constructed in the javascript's isClient code, but must be in its isServer code. Usually all lower case.
 - (MHMongoCollection*)collectionNamed:(NSString*)name;
 
--(NSString*)newRandomID;
+-(NSString*)newObjectID;
 
 -(void)subscribeWithName:(NSString*)subscriptionName readyHandler:(void(^)())readyHandler;
 

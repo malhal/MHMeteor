@@ -29,7 +29,7 @@ static int kLoadRequestRetryDelay = 3; // seconds
 @implementation MHMeteor{
     //MHMongoCollections
     NSMutableDictionary* _collectionsByName;
-    NSMutableDictionary* _collectionsByGlobalID;
+    //NSMutableDictionary* _collectionsByGlobalID;
     NSMutableDictionary* _subscriptionHandlesByRecordSet;
     void(^_startedUp)();
     NSURLRequest* _request;
@@ -67,7 +67,7 @@ static int kLoadRequestRetryDelay = 3; // seconds
     self = [super init];
     if (self) {
         _startedUp = startedUp;
-        _collectionsByGlobalID = [NSMutableDictionary dictionary];
+        //_collectionsByGlobalID = [NSMutableDictionary dictionary];
         _collectionsByName = [NSMutableDictionary dictionary];
         // hang on to the webview so we can wake it up when we need to invoke the context.
         _webView = [[UIWebView alloc] init];
@@ -115,12 +115,12 @@ static int kLoadRequestRetryDelay = 3; // seconds
     _value = value;
     
     //refresh all the collections
-    for(NSString* globalID in _collectionsByGlobalID.allKeys){
-        MHMongoCollection* collection = _collectionsByGlobalID[globalID];
-        collection.value = value.context[globalID];
-    }
+//    for(NSString* globalID in _collectionsByGlobalID.allKeys){
+//        MHMongoCollection* collection = _collectionsByGlobalID[globalID];
+//        collection.value = value.context[globalID];
+//    }
     for(NSString* name in _collectionsByName){
-        MHMongoCollection* collection = _collectionsByGlobalID[name];
+        MHMongoCollection* collection = _collectionsByName[name];
         collection.value = [value.context[@"Mongo"][@"Collection"]  constructWithArguments:@[name]];
     }
     
@@ -134,10 +134,11 @@ static int kLoadRequestRetryDelay = 3; // seconds
     [webView performSelector:@selector(loadRequest:) withObject:webView.request afterDelay:kLoadRequestRetryDelay];
 }
 
+/*
 - (MHMongoCollection*)collectionForGlobalID:(NSString*)globalID{
     JSValue* global = self.value.context[globalID];
     if(global.isUndefined){
-        NSLog(@"globalID is undefined in javascript");
+        NSLog(@"globalID %@ is undefined in javascript", globalID);
         return nil;
     }
     JSValue* nameValue = [global valueForProperty:@"_name"];
@@ -155,15 +156,18 @@ static int kLoadRequestRetryDelay = 3; // seconds
     _collectionsByGlobalID[globalID] = collection;
     return collection;
 }
-
+*/
 
 - (MHMongoCollection*)collectionNamed:(NSString*)name{
     MHMongoCollection* collection = _collectionsByName[name];
     if(collection){
         return collection;
     }
-    collection = [[MHMongoCollection alloc] initWithMeteor:self
-                                                     value:[self.value.context[@"Mongo"][@"Collection"]  constructWithArguments:@[name]]];
+    JSValue* value = [self.value.context evaluateScript:[NSString stringWithFormat:@"Meteor.connection._stores['%@']._getCollection()", name]];
+    if(value.isUndefined){
+        value = [self.value.context[@"Mongo"][@"Collection"]  constructWithArguments:@[name]];
+    }
+    collection = [[MHMongoCollection alloc] initWithMeteor:self value:value];
     _collectionsByName[name] = collection;
     return collection;
 }
@@ -186,10 +190,12 @@ static int kLoadRequestRetryDelay = 3; // seconds
 }
  */
 
--(NSString*)newRandomID{
+// requires random package?
+-(NSString*)newObjectID{
     [self wakeyWakey];
-    JSValue* documentIDValue = [self.value.context[@"Random"] invokeMethod:@"id" withArguments:nil];
-    return documentIDValue.toString;
+    //JSValue* documentIDValue = [self.value.context[@"Random"] invokeMethod:@"id" withArguments:nil];
+    JSValue* value = [self.value.context evaluateScript:@"new Mongo.ObjectID().valueOf()"];
+    return value.toString;
 }
 
 -(void)_startedUp:(void(^)())startedUp{

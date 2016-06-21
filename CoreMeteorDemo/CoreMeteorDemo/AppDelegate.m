@@ -28,7 +28,8 @@
     self.window.rootViewController = [[UIViewController alloc] init];
     MasterViewController *controller = (MasterViewController *)navigationController.topViewController;
     
-    // run the simple-todos meteor app locally and then run this app on the simulator.
+    // Requires the simple-todos meteor app without the accounts code and insecure package.
+    // Run it locally and then run this app on the simulator.
      NSString* url = @"http://127.0.0.1:3000";
    // NSString* url = @"http://10.0.1.101:3001";
    // NSString* url = @"http://coremeteor.meteor.com";

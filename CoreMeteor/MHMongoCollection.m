@@ -117,7 +117,8 @@
 
 -(void)insertDocument:(NSDictionary*)document documentInserted:(MHMongoCollectionDocumentInserted)documentInserted{
     NSAssert(document, @"document cannot be nil");
-    [self invokeMethod:@"insert" withArguments:@[document]];
+    JSValue* value = [self invokeMethod:@"insert" withArguments:@[document]];
+    NSLog(@"%@", value);
 }
 
 

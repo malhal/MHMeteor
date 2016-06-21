@@ -21,13 +21,21 @@ Pod::Spec.new do |s|
   # s.screenshots     = "www.example.com/screenshots_1", "www.example.com/screenshots_2"
   s.license          = 'MIT'
   s.author           = { "Malcolm Hall" => "malhal@users.noreply.github.com" }
-  s.source           = { :git => "https://github.com/malhal/MHMeteor.git", :tag => s.version.to_s }
+  s.source           = { :git => "https://github.com/malhal/MHMeteor.git",
+                         :tag => s.version.to_s,
+                         :submodules => true
+                       }
   s.social_media_url = 'https://twitter.com/malhal'
 
   s.platform     = :ios, '7.0'
   s.requires_arc = true
 
   s.source_files = 'MHMeteor/**/*.{h,m}', 'dependencies/**/*.{h,m}'
+
+#spec.subspec 'SDKit' do |sdkit|
+#sdkit.source_files = 'dependencies/**/*.{h,m}'
+#sdkit.resources    = 'SDKit/**/Assets/*.png'
+#end
 
   # s.public_header_files = 'Pod/Classes/**/*.h'
   s.frameworks = 'CoreData', 'JavaScriptCore'

@@ -32,6 +32,7 @@ Pod::Spec.new do |s|
 
   s.source_files = 'MHMeteor/**/*.{h,m}', 'dependencies/**/*.{h,m}'
   s.private_header_files  = 'dependencies/**/*.h'
+  s.prefix_header_file = 'MHMeteor/MHMeteor-Prefix.pch'
 
   # s.public_header_files = 'Pod/Classes/**/*.h'
   s.frameworks = 'CoreData', 'JavaScriptCore'

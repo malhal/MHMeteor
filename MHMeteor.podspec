@@ -32,9 +32,9 @@ Pod::Spec.new do |s|
 
   s.source_files = 'MHMeteor/**/*.{h,m}'
 
-  s.subspec 'SDKit' do |sdkit|
-    sdkit.source_files = 'dependencies/**/*.{h,m}'
-    #sdkit.resources    = 'SDKit/**/Assets/*.png'
+  s.subspec 'NSPredicate-MongoDB-Adaptor' do |m|
+    m.source_files = 'dependencies/NSPredicate-MongoDB-Adaptor/**/*.{h,m}'
+    #m.resources    = 'SDKit/**/Assets/*.png'
   end
 
   # s.public_header_files = 'Pod/Classes/**/*.h'

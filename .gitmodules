@@ -1,0 +1,3 @@
+[submodule "dependencies/NSPredicate-MongoDB-Adaptor"]
+	path = dependencies/NSPredicate-MongoDB-Adaptor
+	url = https://github.com/tjboneman/NSPredicate-MongoDB-Adaptor

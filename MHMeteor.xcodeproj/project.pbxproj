@@ -1,0 +1,521 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		ECD5C8FD1D19567C00B433DE /* MHMeteor.h in Headers */ = {isa = PBXBuildFile; fileRef = ECD5C8FC1D19567C00B433DE /* MHMeteor.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		ECD5C9041D19567C00B433DE /* MHMeteor.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ECD5C8F91D19567C00B433DE /* MHMeteor.framework */; };
+		ECD5C9091D19567C00B433DE /* MHMeteorTests.m in Sources */ = {isa = PBXBuildFile; fileRef = ECD5C9081D19567C00B433DE /* MHMeteorTests.m */; };
+		ECD5C9151D1957DE00B433DE /* MHMContainer.h in Headers */ = {isa = PBXBuildFile; fileRef = ECD5C9131D1957DE00B433DE /* MHMContainer.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		ECD5C9161D1957DE00B433DE /* MHMContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = ECD5C9141D1957DE00B433DE /* MHMContainer.m */; };
+		ECD5C9251D1957EA00B433DE /* MHMIncrementalStore.h in Headers */ = {isa = PBXBuildFile; fileRef = ECD5C9171D1957EA00B433DE /* MHMIncrementalStore.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		ECD5C9261D1957EA00B433DE /* MHMIncrementalStore.m in Sources */ = {isa = PBXBuildFile; fileRef = ECD5C9181D1957EA00B433DE /* MHMIncrementalStore.m */; };
+		ECD5C9271D1957EA00B433DE /* MHMJSManagedValue.h in Headers */ = {isa = PBXBuildFile; fileRef = ECD5C9191D1957EA00B433DE /* MHMJSManagedValue.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		ECD5C9281D1957EA00B433DE /* MHMJSManagedValue.m in Sources */ = {isa = PBXBuildFile; fileRef = ECD5C91A1D1957EA00B433DE /* MHMJSManagedValue.m */; };
+		ECD5C9291D1957EA00B433DE /* MHMCollection.h in Headers */ = {isa = PBXBuildFile; fileRef = ECD5C91B1D1957EA00B433DE /* MHMCollection.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		ECD5C92A1D1957EA00B433DE /* MHMCollection.m in Sources */ = {isa = PBXBuildFile; fileRef = ECD5C91C1D1957EA00B433DE /* MHMCollection.m */; };
+		ECD5C92B1D1957EA00B433DE /* MHMCursor.h in Headers */ = {isa = PBXBuildFile; fileRef = ECD5C91D1D1957EA00B433DE /* MHMCursor.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		ECD5C92C1D1957EA00B433DE /* MHMCursor.m in Sources */ = {isa = PBXBuildFile; fileRef = ECD5C91E1D1957EA00B433DE /* MHMCursor.m */; };
+		ECD5C92D1D1957EA00B433DE /* MHMLiveQueryHandle.h in Headers */ = {isa = PBXBuildFile; fileRef = ECD5C91F1D1957EA00B433DE /* MHMLiveQueryHandle.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		ECD5C92E1D1957EA00B433DE /* MHMLiveQueryHandle.m in Sources */ = {isa = PBXBuildFile; fileRef = ECD5C9201D1957EA00B433DE /* MHMLiveQueryHandle.m */; };
+		ECD5C92F1D1957EA00B433DE /* MHMSession.h in Headers */ = {isa = PBXBuildFile; fileRef = ECD5C9211D1957EA00B433DE /* MHMSession.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		ECD5C9301D1957EA00B433DE /* MHMSession.m in Sources */ = {isa = PBXBuildFile; fileRef = ECD5C9221D1957EA00B433DE /* MHMSession.m */; };
+		ECD5C9381D198FAB00B433DE /* LICENSE.txt in Resources */ = {isa = PBXBuildFile; fileRef = ECD5C9341D198FAB00B433DE /* LICENSE.txt */; };
+		ECD5C9391D198FAB00B433DE /* MongoDBPredicateAdaptor.h in Headers */ = {isa = PBXBuildFile; fileRef = ECD5C9351D198FAB00B433DE /* MongoDBPredicateAdaptor.h */; };
+		ECD5C93A1D198FAB00B433DE /* MongoDBPredicateAdaptor.m in Sources */ = {isa = PBXBuildFile; fileRef = ECD5C9361D198FAB00B433DE /* MongoDBPredicateAdaptor.m */; };
+		ECD5C93B1D198FAB00B433DE /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = ECD5C9371D198FAB00B433DE /* README.md */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		ECD5C9051D19567C00B433DE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = ECD5C8F01D19567C00B433DE /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = ECD5C8F81D19567C00B433DE;
+			remoteInfo = MHMeteor;
+		};
+		ECD5C9441D19A0AC00B433DE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = ECD5C93F1D19A0AC00B433DE /* MHMeteorDemo.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = ECEC18EA1B6851BC0094493D;
+			remoteInfo = MHMeteorDemo;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		ECD5C8F91D19567C00B433DE /* MHMeteor.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MHMeteor.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		ECD5C8FC1D19567C00B433DE /* MHMeteor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MHMeteor.h; sourceTree = "<group>"; };
+		ECD5C8FE1D19567C00B433DE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		ECD5C9031D19567C00B433DE /* MHMeteorTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MHMeteorTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		ECD5C9081D19567C00B433DE /* MHMeteorTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MHMeteorTests.m; sourceTree = "<group>"; };
+		ECD5C90A1D19567C00B433DE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		ECD5C9131D1957DE00B433DE /* MHMContainer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MHMContainer.h; sourceTree = "<group>"; };
+		ECD5C9141D1957DE00B433DE /* MHMContainer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MHMContainer.m; sourceTree = "<group>"; };
+		ECD5C9171D1957EA00B433DE /* MHMIncrementalStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MHMIncrementalStore.h; sourceTree = "<group>"; };
+		ECD5C9181D1957EA00B433DE /* MHMIncrementalStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MHMIncrementalStore.m; sourceTree = "<group>"; };
+		ECD5C9191D1957EA00B433DE /* MHMJSManagedValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MHMJSManagedValue.h; sourceTree = "<group>"; };
+		ECD5C91A1D1957EA00B433DE /* MHMJSManagedValue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MHMJSManagedValue.m; sourceTree = "<group>"; };
+		ECD5C91B1D1957EA00B433DE /* MHMCollection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MHMCollection.h; sourceTree = "<group>"; };
+		ECD5C91C1D1957EA00B433DE /* MHMCollection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MHMCollection.m; sourceTree = "<group>"; };
+		ECD5C91D1D1957EA00B433DE /* MHMCursor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MHMCursor.h; sourceTree = "<group>"; };
+		ECD5C91E1D1957EA00B433DE /* MHMCursor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MHMCursor.m; sourceTree = "<group>"; };
+		ECD5C91F1D1957EA00B433DE /* MHMLiveQueryHandle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MHMLiveQueryHandle.h; sourceTree = "<group>"; };
+		ECD5C9201D1957EA00B433DE /* MHMLiveQueryHandle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MHMLiveQueryHandle.m; sourceTree = "<group>"; };
+		ECD5C9211D1957EA00B433DE /* MHMSession.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MHMSession.h; sourceTree = "<group>"; };
+		ECD5C9221D1957EA00B433DE /* MHMSession.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MHMSession.m; sourceTree = "<group>"; };
+		ECD5C9341D198FAB00B433DE /* LICENSE.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE.txt; sourceTree = "<group>"; };
+		ECD5C9351D198FAB00B433DE /* MongoDBPredicateAdaptor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MongoDBPredicateAdaptor.h; sourceTree = "<group>"; };
+		ECD5C9361D198FAB00B433DE /* MongoDBPredicateAdaptor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MongoDBPredicateAdaptor.m; sourceTree = "<group>"; };
+		ECD5C9371D198FAB00B433DE /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		ECD5C93E1D1999B600B433DE /* MHMeteor-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MHMeteor-Prefix.pch"; sourceTree = "<group>"; };
+		ECD5C93F1D19A0AC00B433DE /* MHMeteorDemo.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = MHMeteorDemo.xcodeproj; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		ECD5C8F51D19567C00B433DE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		ECD5C9001D19567C00B433DE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				ECD5C9041D19567C00B433DE /* MHMeteor.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		ECD5C8EF1D19567C00B433DE = {
+			isa = PBXGroup;
+			children = (
+				ECD5C8FB1D19567C00B433DE /* MHMeteor */,
+				ECD5C9071D19567C00B433DE /* MHMeteorTests */,
+				ECD5C8FA1D19567C00B433DE /* Products */,
+				ECD5C93F1D19A0AC00B433DE /* MHMeteorDemo.xcodeproj */,
+			);
+			sourceTree = "<group>";
+		};
+		ECD5C8FA1D19567C00B433DE /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				ECD5C8F91D19567C00B433DE /* MHMeteor.framework */,
+				ECD5C9031D19567C00B433DE /* MHMeteorTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		ECD5C8FB1D19567C00B433DE /* MHMeteor */ = {
+			isa = PBXGroup;
+			children = (
+				ECD5C93C1D198FAE00B433DE /* dependencies */,
+				ECD5C8FC1D19567C00B433DE /* MHMeteor.h */,
+				ECD5C93E1D1999B600B433DE /* MHMeteor-Prefix.pch */,
+				ECD5C9131D1957DE00B433DE /* MHMContainer.h */,
+				ECD5C9141D1957DE00B433DE /* MHMContainer.m */,
+				ECD5C9171D1957EA00B433DE /* MHMIncrementalStore.h */,
+				ECD5C9181D1957EA00B433DE /* MHMIncrementalStore.m */,
+				ECD5C9191D1957EA00B433DE /* MHMJSManagedValue.h */,
+				ECD5C91A1D1957EA00B433DE /* MHMJSManagedValue.m */,
+				ECD5C91B1D1957EA00B433DE /* MHMCollection.h */,
+				ECD5C91C1D1957EA00B433DE /* MHMCollection.m */,
+				ECD5C91D1D1957EA00B433DE /* MHMCursor.h */,
+				ECD5C91E1D1957EA00B433DE /* MHMCursor.m */,
+				ECD5C91F1D1957EA00B433DE /* MHMLiveQueryHandle.h */,
+				ECD5C9201D1957EA00B433DE /* MHMLiveQueryHandle.m */,
+				ECD5C9211D1957EA00B433DE /* MHMSession.h */,
+				ECD5C9221D1957EA00B433DE /* MHMSession.m */,
+				ECD5C8FE1D19567C00B433DE /* Info.plist */,
+			);
+			path = MHMeteor;
+			sourceTree = "<group>";
+		};
+		ECD5C9071D19567C00B433DE /* MHMeteorTests */ = {
+			isa = PBXGroup;
+			children = (
+				ECD5C9081D19567C00B433DE /* MHMeteorTests.m */,
+				ECD5C90A1D19567C00B433DE /* Info.plist */,
+			);
+			path = MHMeteorTests;
+			sourceTree = "<group>";
+		};
+		ECD5C9331D198FAB00B433DE /* NSPredicate-MongoDB-Adaptor */ = {
+			isa = PBXGroup;
+			children = (
+				ECD5C9341D198FAB00B433DE /* LICENSE.txt */,
+				ECD5C9351D198FAB00B433DE /* MongoDBPredicateAdaptor.h */,
+				ECD5C9361D198FAB00B433DE /* MongoDBPredicateAdaptor.m */,
+				ECD5C9371D198FAB00B433DE /* README.md */,
+			);
+			name = "NSPredicate-MongoDB-Adaptor";
+			path = "dependencies/NSPredicate-MongoDB-Adaptor";
+			sourceTree = SOURCE_ROOT;
+		};
+		ECD5C93C1D198FAE00B433DE /* dependencies */ = {
+			isa = PBXGroup;
+			children = (
+				ECD5C9331D198FAB00B433DE /* NSPredicate-MongoDB-Adaptor */,
+			);
+			name = dependencies;
+			sourceTree = "<group>";
+		};
+		ECD5C9401D19A0AC00B433DE /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				ECD5C9451D19A0AC00B433DE /* MHMeteorDemo.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		ECD5C8F61D19567C00B433DE /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				ECD5C9291D1957EA00B433DE /* MHMCollection.h in Headers */,
+				ECD5C8FD1D19567C00B433DE /* MHMeteor.h in Headers */,
+				ECD5C92F1D1957EA00B433DE /* MHMSession.h in Headers */,
+				ECD5C92B1D1957EA00B433DE /* MHMCursor.h in Headers */,
+				ECD5C9151D1957DE00B433DE /* MHMContainer.h in Headers */,
+				ECD5C9271D1957EA00B433DE /* MHMJSManagedValue.h in Headers */,
+				ECD5C9251D1957EA00B433DE /* MHMIncrementalStore.h in Headers */,
+				ECD5C92D1D1957EA00B433DE /* MHMLiveQueryHandle.h in Headers */,
+				ECD5C9391D198FAB00B433DE /* MongoDBPredicateAdaptor.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		ECD5C8F81D19567C00B433DE /* MHMeteor */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = ECD5C90D1D19567C00B433DE /* Build configuration list for PBXNativeTarget "MHMeteor" */;
+			buildPhases = (
+				ECD5C8F41D19567C00B433DE /* Sources */,
+				ECD5C8F51D19567C00B433DE /* Frameworks */,
+				ECD5C8F61D19567C00B433DE /* Headers */,
+				ECD5C8F71D19567C00B433DE /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = MHMeteor;
+			productName = MHMeteor;
+			productReference = ECD5C8F91D19567C00B433DE /* MHMeteor.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		ECD5C9021D19567C00B433DE /* MHMeteorTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = ECD5C9101D19567C00B433DE /* Build configuration list for PBXNativeTarget "MHMeteorTests" */;
+			buildPhases = (
+				ECD5C8FF1D19567C00B433DE /* Sources */,
+				ECD5C9001D19567C00B433DE /* Frameworks */,
+				ECD5C9011D19567C00B433DE /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				ECD5C9061D19567C00B433DE /* PBXTargetDependency */,
+			);
+			name = MHMeteorTests;
+			productName = MHMeteorTests;
+			productReference = ECD5C9031D19567C00B433DE /* MHMeteorTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		ECD5C8F01D19567C00B433DE /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0730;
+				ORGANIZATIONNAME = "Malcolm Hall";
+				TargetAttributes = {
+					ECD5C8F81D19567C00B433DE = {
+						CreatedOnToolsVersion = 7.3;
+					};
+					ECD5C9021D19567C00B433DE = {
+						CreatedOnToolsVersion = 7.3;
+					};
+				};
+			};
+			buildConfigurationList = ECD5C8F31D19567C00B433DE /* Build configuration list for PBXProject "MHMeteor" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = ECD5C8EF1D19567C00B433DE;
+			productRefGroup = ECD5C8FA1D19567C00B433DE /* Products */;
+			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = ECD5C9401D19A0AC00B433DE /* Products */;
+					ProjectRef = ECD5C93F1D19A0AC00B433DE /* MHMeteorDemo.xcodeproj */;
+				},
+			);
+			projectRoot = "";
+			targets = (
+				ECD5C8F81D19567C00B433DE /* MHMeteor */,
+				ECD5C9021D19567C00B433DE /* MHMeteorTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		ECD5C9451D19A0AC00B433DE /* MHMeteorDemo.app */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.application;
+			path = MHMeteorDemo.app;
+			remoteRef = ECD5C9441D19A0AC00B433DE /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
+
+/* Begin PBXResourcesBuildPhase section */
+		ECD5C8F71D19567C00B433DE /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				ECD5C9381D198FAB00B433DE /* LICENSE.txt in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		ECD5C9011D19567C00B433DE /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		ECD5C8F41D19567C00B433DE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				ECD5C92E1D1957EA00B433DE /* MHMLiveQueryHandle.m in Sources */,
+				ECD5C9161D1957DE00B433DE /* MHMContainer.m in Sources */,
+				ECD5C92C1D1957EA00B433DE /* MHMCursor.m in Sources */,
+				ECD5C9281D1957EA00B433DE /* MHMJSManagedValue.m in Sources */,
+				ECD5C9261D1957EA00B433DE /* MHMIncrementalStore.m in Sources */,
+				ECD5C92A1D1957EA00B433DE /* MHMCollection.m in Sources */,
+				ECD5C93B1D198FAB00B433DE /* README.md in Sources */,
+				ECD5C93A1D198FAB00B433DE /* MongoDBPredicateAdaptor.m in Sources */,
+				ECD5C9301D1957EA00B433DE /* MHMSession.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		ECD5C8FF1D19567C00B433DE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				ECD5C9091D19567C00B433DE /* MHMeteorTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		ECD5C9061D19567C00B433DE /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = ECD5C8F81D19567C00B433DE /* MHMeteor */;
+			targetProxy = ECD5C9051D19567C00B433DE /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		ECD5C90B1D19567C00B433DE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		ECD5C90C1D19567C00B433DE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		ECD5C90E1D19567C00B433DE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "MHMeteor/MHMeteor-Prefix.pch";
+				INFOPLIST_FILE = MHMeteor/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.malhal.MHMeteor;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		ECD5C90F1D19567C00B433DE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "MHMeteor/MHMeteor-Prefix.pch";
+				INFOPLIST_FILE = MHMeteor/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.malhal.MHMeteor;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+		ECD5C9111D19567C00B433DE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = MHMeteorTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.malhal.MHMeteorTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		ECD5C9121D19567C00B433DE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = MHMeteorTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.malhal.MHMeteorTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		ECD5C8F31D19567C00B433DE /* Build configuration list for PBXProject "MHMeteor" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				ECD5C90B1D19567C00B433DE /* Debug */,
+				ECD5C90C1D19567C00B433DE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		ECD5C90D1D19567C00B433DE /* Build configuration list for PBXNativeTarget "MHMeteor" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				ECD5C90E1D19567C00B433DE /* Debug */,
+				ECD5C90F1D19567C00B433DE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		ECD5C9101D19567C00B433DE /* Build configuration list for PBXNativeTarget "MHMeteorTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				ECD5C9111D19567C00B433DE /* Debug */,
+				ECD5C9121D19567C00B433DE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = ECD5C8F01D19567C00B433DE /* Project object */;
+}

@@ -1,0 +1,9 @@
+//
+//  MHMeteor-Prefix.pch
+//  MHMeteor
+//
+//  Created by Malcolm Hall on 21/06/2016.
+//  Copyright © 2016 Malcolm Hall. All rights reserved.
+//
+
+#define MongoDBPredicateAdaptor MHMMongoDBPredicateAdaptor

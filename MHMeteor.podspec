@@ -30,12 +30,7 @@ Pod::Spec.new do |s|
   s.platform     = :ios, '7.0'
   s.requires_arc = true
 
-  s.source_files = 'MHMeteor/**/*.{h,m}'
-
-  s.subspec 'NSPredicate-MongoDB-Adaptor' do |m|
-    m.source_files = 'dependencies/NSPredicate-MongoDB-Adaptor/**/*.{h,m}'
-    #m.resources    = 'SDKit/**/Assets/*.png'
-  end
+  s.source_files = 'MHMeteor/**/*.{h,m}', 'dependencies/**/*.{h,m}'
 
   # s.public_header_files = 'Pod/Classes/**/*.h'
   s.frameworks = 'CoreData', 'JavaScriptCore'
